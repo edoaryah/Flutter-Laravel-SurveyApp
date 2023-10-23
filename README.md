@@ -9,7 +9,7 @@ Data hasil survey yang telah dilakukan sangat penting bagi Mr. X untuk mengambil
 Aplikasi mobile survey kualitas pendidikan dan aspek pendukung di kampus dapat menjadi solusi bagi Mr. X untuk mengetahui hasil survey secara cepat dan mudah, dan meningkatkan efisiensi kerja Mr. X. Aplikasi ini dapat menampilkan data hasil survey seperti faktor-faktor yang dipermasalahkan, gender, negara asal, rata-rata umur responden, dan lain sebagainya. Aplikasi ini dapat dikembangkan dengan menggunakan framework Laravel untuk backend dan framework Flutter untuk frontend. Dengan menggunakan framework tersebut, aplikasi dapat dikembangkan dengan cepat dan mudah.
 
 ## Flowchart
-![Flowchart_Kelompok3](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/114456394/553b2100-0e92-4155-8c0e-d685997dc877)
+![Flowchart_Kelompok3](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/114456394/e84b248e-33a9-4e0b-9025-32187b3715db)
 
 Berdasarkan Flowchart Tersebut diketahui pada ketika memulai aplikasi tersebut pada tampilan dashboard terdapat 6 fitur  di dalamnya yang akan ditampilkan yaitu total responden, jumlah faktor yang dipermasalahkan dalam tiap faktornya, jumlah responden berdasarkan gender, rata rata umur responden total, dan rata-rata IPK (GPA) responden total. dimana dalam masing masing fitur tersebut akan ditampilkan dalam dashboard. Data yang ditampilkan tersebut diambil dari database responden. pada dashboard  di dalamnya terdapat button yang terdiri dari button list, home dan form tambahan.  Ketika memilih  menu button Responden nantinya akan diarahkan pada tampilan responden masuk. Pada tiap daftar responden tersebut apabila ditekan nantinya akan tampil detail hasil survei pada tiap respondennya.
 
