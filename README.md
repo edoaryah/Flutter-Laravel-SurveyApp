@@ -45,8 +45,8 @@ Disamping kedua visualisasi data tersebut terdapat satu visualisasi data lagi ya
 | ------ | ------ | ------ |
 | Ahmad Shodikin / 03 / 2141762132 | github.com/AhmadShodikinn | Front End |
 | Clauria Dwi Putri Nabillah 06 / 2141762029 | github.com/ClauriaDwiPN | Pengolahan Data & Pelaporan |
-| Edo Arya Hermawan 07 / 2141762068 | github.com/edoaryah | Back End |
-| Rendy Septian Pradana 20 / 2141762018 | github.com/Rendyseptch | Dokumentasi & Pelaporan |
+| Edo Arya Hermawan / 07 / 2141762068 | github.com/edoaryah | Back End |
+| Rendy Septian Pradana / 20 / 2141762018 | github.com/Rendyseptch | Dokumentasi & Pelaporan |
 
 ## Dokumentasi Kegiatan
 ![Dokumentasi_Kelompok3](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/114456394/a5c8eb7f-60c7-4102-a43e-1a01e7646108)
