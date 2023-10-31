@@ -29,6 +29,7 @@ class PieChart2State extends State<PieChartPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Pie Chart Page'),
+        backgroundColor: Color.fromARGB(255, 205, 0, 0),
       ),
       body: Center(
         child: Column(

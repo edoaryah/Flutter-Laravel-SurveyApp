@@ -54,6 +54,7 @@ class _GenrePieChartState extends State<GenrePieChart> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Genre Pie Chart'),
+        backgroundColor: Color.fromARGB(255, 205, 0, 0),
       ),
       body: Center(
         child: data != null

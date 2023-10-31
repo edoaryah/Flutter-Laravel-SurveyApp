@@ -23,6 +23,7 @@ class _LayoutNavigationBar extends State<LayoutNavigationBar> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dashboard'),
+        backgroundColor: Color.fromARGB(255, 205, 0, 0),
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -35,10 +36,12 @@ class _LayoutNavigationBar extends State<LayoutNavigationBar> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
+            backgroundColor: Color.fromARGB(255, 205, 0, 0),
             label: 'List',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
+            backgroundColor: Color.fromARGB(255, 205, 0, 0),
             label: 'Home',
           ),
         ],

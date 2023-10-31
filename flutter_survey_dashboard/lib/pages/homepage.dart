@@ -202,6 +202,7 @@ class _HomepageState extends State<Homepage> {
           children: <Widget>[
             Card(
               margin: EdgeInsets.all(16.0),
+              color: Color.fromARGB(255, 205, 0, 0),
               child: Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Column(
@@ -209,7 +210,7 @@ class _HomepageState extends State<Homepage> {
                     Icon(
                       Icons.group,
                       size: 72,
-                      color: Colors.blue,
+                      color: Colors.white,
                     ),
                     SizedBox(height: 16.0),
                     Text(
@@ -217,6 +218,7 @@ class _HomepageState extends State<Homepage> {
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
+                        color: Colors.white,
                       ),
                     ),
                   ],
@@ -275,7 +277,7 @@ class _HomepageState extends State<Homepage> {
                             Icon(
                               Icons.pie_chart,
                               size: 80,
-                              color: Colors.blue,
+                              color: Color.fromARGB(255, 205, 0, 0),
                             ),
                             SizedBox(height: 5),
                             ElevatedButton(
@@ -293,6 +295,9 @@ class _HomepageState extends State<Homepage> {
                                 );
                               },
                               child: Text('Pie Chart'),
+                              style: ElevatedButton.styleFrom(
+                                primary: Color.fromARGB(255, 205, 0, 0),
+                              ),
                             ),
                           ],
                         ),
@@ -310,7 +315,7 @@ class _HomepageState extends State<Homepage> {
                             Icon(
                               Icons.person_2,
                               size: 72,
-                              color: Colors.blue,
+                              color: Color.fromARGB(255, 244, 38, 216),
                             ),
                             SizedBox(
                               height: 5.0,
@@ -485,8 +490,10 @@ class _HomepageState extends State<Homepage> {
                       },
                       style: ButtonStyle(
                         minimumSize: MaterialStateProperty.all(
-                          Size(MediaQuery.of(context).size.width / 2 - 25,
-                              45), // 20 adalah padding kiri dan kanan
+                          Size(MediaQuery.of(context).size.width / 2 - 25, 45),
+                        ),
+                        backgroundColor: MaterialStateProperty.all(
+                          Color.fromARGB(255, 205, 0, 0),
                         ),
                       ),
                       child: Text('Genre Pie Chart'),
@@ -503,8 +510,10 @@ class _HomepageState extends State<Homepage> {
                       },
                       style: ButtonStyle(
                         minimumSize: MaterialStateProperty.all(
-                          Size(MediaQuery.of(context).size.width / 2 - 25,
-                              45), // 20 adalah padding kiri dan kanan
+                          Size(MediaQuery.of(context).size.width / 2 - 25, 45),
+                        ),
+                        backgroundColor: MaterialStateProperty.all(
+                          Color.fromARGB(255, 205, 0, 0),
                         ),
                       ),
                       child: Text('Nationality Pie Chart'),

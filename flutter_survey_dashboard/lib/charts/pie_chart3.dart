@@ -47,6 +47,7 @@ class _NationalityPieChartState extends State<NationalityPieChart> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Nationality Pie Chart'),
+        backgroundColor: Color.fromARGB(255, 205, 0, 0),
       ),
       body: Center(
         child: country != null
