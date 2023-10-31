@@ -1,16 +1,16 @@
 // import 'package:country_code_picker/country_code_picker.dart';
 // ignore_for_file: avoid_print, prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_string_interpolations, deprecated_member_use, sort_child_properties_last, prefer_interpolation_to_compose_strings
-// import 'package:flutter_survey_dashboard/charts/pie_chart2.dart';
+// import 'package:flutter_survey_dashboard/charts/pie_chart.dart2';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:country_flags/country_flags.dart';
-import 'package:flutter_survey_dashboard/charts/pie_chart.dart';
 import 'package:flutter_survey_dashboard/charts/pie_chart2.dart';
 import 'package:flutter_survey_dashboard/charts/pie_chart3.dart';
+import 'package:fl_chart/fl_chart.dart';
 
-String urlDomain = 'http://192.168.1.18:8000/';
+String urlDomain = 'http://192.168.77.200:8000/';
 String urlTotalRespondents = urlDomain + 'api/total-respondents';
 String urlRespondentsByGender = urlDomain + 'api/respondents-by-gender';
 String urlAverageAge = urlDomain + 'api/average-age';
@@ -225,124 +225,78 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 200,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Card(
-                      margin: EdgeInsets.only(top: 16, left: 16, bottom: 16),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Column(
-                          children: [
-                            Icon(
-                              Icons.person,
-                              size: 72,
-                              color: Colors.blue,
-                            ),
-                            SizedBox(
-                              height: 5.0,
-                            ),
-                            Text(
-                              "${error ?? maleCount}",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
+            Card(
+              margin: EdgeInsets.all(16.0),
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: AspectRatio(
+                        aspectRatio: 1.3,
+                        child: PieChart(
+                          PieChartData(
+                            sections: [
+                              PieChartSectionData(
+                                value: double.tryParse(maleCount) ?? 0.0,
+                                color: const Color(0xff0293ee),
+                                title:
+                                    '${((double.tryParse(maleCount) ?? 0.0) / ((double.tryParse(maleCount) ?? 0.0) + (double.tryParse(femaleCount) ?? 0.0)) * 100).toStringAsFixed(2)}%',
+                                radius: 75,
                               ),
-                            ),
-                            SizedBox(
-                              height: 5.0,
-                            ),
-                            Text(
-                              "Male",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
+                              PieChartSectionData(
+                                value: double.tryParse(femaleCount) ?? 0.0,
+                                color: const Color(0xfff8b250),
+                                title:
+                                    '${((double.tryParse(femaleCount) ?? 0.0) / ((double.tryParse(maleCount) ?? 0.0) + (double.tryParse(femaleCount) ?? 0.0)) * 100).toStringAsFixed(2)}%',
+                                radius: 75,
                               ),
-                            ),
-                          ],
+                            ],
+                            sectionsSpace: 0,
+                            centerSpaceRadius: 0,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: Card(
-                      margin: EdgeInsets.only(top: 16, left: 16, bottom: 16),
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 16, left: 8, right: 8),
-                        child: Column(
-                          children: [
-                            Icon(
-                              Icons.pie_chart,
-                              size: 80,
-                              color: Color.fromARGB(255, 205, 0, 0),
-                            ),
-                            SizedBox(height: 5),
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => PieChartPage(
-                                      maleCount:
-                                          double.tryParse(maleCount) ?? 0.0,
-                                      femaleCount:
-                                          double.tryParse(femaleCount) ?? 0.0,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Text('Pie Chart'),
-                              style: ElevatedButton.styleFrom(
-                                primary: Color.fromARGB(255, 205, 0, 0),
+                    Container(
+                      margin: EdgeInsets.all(16.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                width: 16,
+                                height: 16,
+                                color: const Color(0xff0293ee),
                               ),
-                            ),
-                          ],
-                        ),
+                              SizedBox(width: 8),
+                              Text(
+                                '${(double.tryParse(maleCount) ?? 0).round()} Male',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                width: 16,
+                                height: 16,
+                                color: const Color(0xfff8b250),
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                '${(double.tryParse(femaleCount) ?? 0).round()} Female',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: Card(
-                      margin: EdgeInsets.only(
-                          top: 16, left: 16, bottom: 16, right: 16),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Column(
-                          children: [
-                            Icon(
-                              Icons.person_2,
-                              size: 72,
-                              color: Color.fromARGB(255, 244, 38, 216),
-                            ),
-                            SizedBox(
-                              height: 5.0,
-                            ),
-                            Text(
-                              "${error ?? femaleCount}",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 5.0,
-                            ),
-                            Text(
-                              "Female",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             const Padding(

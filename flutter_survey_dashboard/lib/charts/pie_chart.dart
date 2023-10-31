@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, no_logic_in_create_state, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
@@ -14,15 +12,16 @@ class PieChartPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => PieChart2State(maleCount, femaleCount);
+  State<StatefulWidget> createState() =>
+      _PieChartPageState(maleCount, femaleCount);
 }
 
-class PieChart2State extends State<PieChartPage> {
+class _PieChartPageState extends State<PieChartPage> {
   double maleCount;
   double femaleCount;
   int touchedIndex = -1;
 
-  PieChart2State(this.maleCount, this.femaleCount);
+  _PieChartPageState(this.maleCount, this.femaleCount);
 
   @override
   Widget build(BuildContext context) {
@@ -37,31 +36,28 @@ class PieChart2State extends State<PieChartPage> {
           children: [
             AspectRatio(
               aspectRatio: 1.3,
-              child: Container(
-                decoration: BoxDecoration(),
-                child: PieChart(
-                  PieChartData(
-                    pieTouchData: PieTouchData(
-                      touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                        setState(() {
-                          if (!event.isInterestedForInteractions ||
-                              pieTouchResponse == null ||
-                              pieTouchResponse.touchedSection == null) {
-                            touchedIndex = -1;
-                            return;
-                          }
-                          touchedIndex = pieTouchResponse
-                              .touchedSection!.touchedSectionIndex;
-                        });
-                      },
-                    ),
-                    borderData: FlBorderData(
-                      show: false,
-                    ),
-                    sectionsSpace: 0,
-                    centerSpaceRadius: 80,
-                    sections: showingSections(),
+              child: PieChart(
+                PieChartData(
+                  pieTouchData: PieTouchData(
+                    touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                      setState(() {
+                        if (!event.isInterestedForInteractions ||
+                            pieTouchResponse == null ||
+                            pieTouchResponse.touchedSection == null) {
+                          touchedIndex = -1;
+                          return;
+                        }
+                        touchedIndex = pieTouchResponse
+                            .touchedSection!.touchedSectionIndex;
+                      });
+                    },
                   ),
+                  borderData: FlBorderData(
+                    show: false,
+                  ),
+                  sectionsSpace: 0,
+                  centerSpaceRadius: 80,
+                  sections: showingSections(),
                 ),
               ),
             ),

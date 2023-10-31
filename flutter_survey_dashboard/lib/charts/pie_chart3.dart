@@ -199,3 +199,100 @@ class Indicator extends StatelessWidget {
     );
   }
 }
+
+            // Card(
+            //   margin: EdgeInsets.all(16.0),
+            //   child: Padding(
+            //     padding: EdgeInsets.all(16.0),
+            //     child: Row(
+            //       children: [
+            //         Expanded(
+            //           child: AspectRatio(
+            //             aspectRatio: 1.3,
+            //             child: PieChart(
+            //               PieChartData(
+            //                 sections: country?.map((item) {
+            //                   final countryCode =
+            //                       getCountryCode(item['Nationality']);
+            //                   final count =
+            //                       double.tryParse(item['count'].toString()) ??
+            //                           0.0;
+
+            //                   return PieChartSectionData(
+            //                     value: count,
+            //                     title: '${count.toInt()}',
+            //                     color: Colors.primaries[
+            //                         country?.indexOf(item) ??
+            //                             0 % Colors.primaries.length],
+            //                     radius: 100,
+            //                   );
+            //                 }).toList(),
+            //                 sectionsSpace: 0,
+            //                 centerSpaceRadius: 0,
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // Card(
+            //   margin: EdgeInsets.all(16.0),
+            //   child: Padding(
+            //     padding: EdgeInsets.all(16.0),
+            //     child: Column(
+            //       children: [
+            //         AspectRatio(
+            //           aspectRatio: 1.4,
+            //           child: PieChart(
+            //             PieChartData(
+            //               sections: country?.map((item) {
+            //                 final countryCode =
+            //                     getCountryCode(item['Nationality']);
+            //                 final count =
+            //                     double.tryParse(item['count'].toString()) ??
+            //                         0.0;
+
+            //                 return PieChartSectionData(
+            //                   value: count,
+            //                   title: '${count.toInt()}',
+            //                   color: Colors.primaries[country?.indexOf(item) ??
+            //                       0 % Colors.primaries.length],
+            //                   radius: 100,
+            //                 );
+            //               }).toList(),
+            //               sectionsSpace: 0,
+            //               centerSpaceRadius: 0,
+            //             ),
+            //           ),
+            //         ),
+            //         ListView.builder(
+            //           shrinkWrap: true,
+            //           itemCount: country?.length ?? 0,
+            //           itemBuilder: (context, index) {
+            //             final item = country![index];
+            //             final countryCode = getCountryCode(item['Nationality']);
+            //             final count =
+            //                 double.tryParse(item['count'].toString()) ?? 0.0;
+            //             return Row(
+            //               children: [
+            //                 Container(
+            //                   width: 16,
+            //                   height: 16,
+            //                   color: Colors
+            //                       .primaries[index % Colors.primaries.length],
+            //                 ),
+            //                 SizedBox(width: 8),
+            //                 Text(
+            //                   '(${count.toInt()}) = ${item['Nationality']}',
+            //                   style: TextStyle(fontSize: 16),
+            //                 ),
+            //               ],
+            //             );
+            //           },
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
