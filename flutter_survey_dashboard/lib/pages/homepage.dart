@@ -1,16 +1,15 @@
-// import 'package:country_code_picker/country_code_picker.dart';
-// ignore_for_file: avoid_print, prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_string_interpolations, deprecated_member_use, sort_child_properties_last, prefer_interpolation_to_compose_strings
-// import 'package:flutter_survey_dashboard/charts/pie_chart.dart2';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:country_flags/country_flags.dart';
-import 'package:flutter_survey_dashboard/charts/pie_chart2.dart';
-import 'package:flutter_survey_dashboard/charts/pie_chart3.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-String urlDomain = 'http://192.168.77.200:8000/';
+import 'package:flutter_survey_dashboard/charts/bar_chart1/bar_data.dart';
+import 'package:flutter_survey_dashboard/charts/bar_chart1/bar_graph.dart';
+import 'package:flutter_survey_dashboard/charts/bar_chart2/bar_data.dart';
+import 'package:flutter_survey_dashboard/charts/bar_chart2/bar_graph.dart';
+
+String urlDomain = 'http://192.168.1.15:8000/';
 String urlTotalRespondents = urlDomain + 'api/total-respondents';
 String urlRespondentsByGender = urlDomain + 'api/respondents-by-gender';
 String urlAverageAge = urlDomain + 'api/average-age';
@@ -27,6 +26,8 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  List<CountryPopulation> countryData = [];
+  List<GenreTotal> genreData = [];
   String total = '-';
   String maleCount = '-';
   String femaleCount = '-';
@@ -46,6 +47,16 @@ class _HomepageState extends State<Homepage> {
     fetchData4();
     fetchData5();
     fetchData6();
+    fetchData7().then((data) {
+      setState(() {
+        countryData = data;
+      });
+    });
+    fetchData8().then((data) {
+      setState(() {
+        genreData = data;
+      });
+    });
   }
 
   Future<void> fetchData() async {
@@ -174,6 +185,46 @@ class _HomepageState extends State<Homepage> {
     }
   }
 
+  Future<List<CountryPopulation>> fetchData7() async {
+    try {
+      final response = await http.get(Uri.parse(urlRespondentsByNationality));
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body) as List<dynamic>;
+        final countryData = data
+            .map((item) => CountryPopulation(
+                nationality: item['Nationality'],
+                count: double.parse(item['count'].toString())))
+            .toList();
+        return countryData;
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<List<GenreTotal>> fetchData8() async {
+    try {
+      final response = await http.get(Uri.parse(urlRespondentsByGenre));
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body) as List<dynamic>;
+        final genreData = data
+            .map((item) => GenreTotal(
+                nationality: item['Genre'],
+                count: double.parse(item['count'].toString())))
+            .toList();
+        return genreData;
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
   String getCountryCode(String countryName) {
     switch (countryName) {
       case 'Indonesia':
@@ -201,21 +252,21 @@ class _HomepageState extends State<Homepage> {
         body: ListView(
           children: <Widget>[
             Card(
-              margin: EdgeInsets.all(16.0),
-              color: Color.fromARGB(255, 205, 0, 0),
+              margin: const EdgeInsets.all(16.0),
+              color: const Color.fromARGB(255, 205, 0, 0),
               child: Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.group,
                       size: 72,
                       color: Colors.white,
                     ),
-                    SizedBox(height: 16.0),
+                    const SizedBox(height: 16.0),
                     Text(
                       "${error ?? total}",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
@@ -226,9 +277,9 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
             Card(
-              margin: EdgeInsets.all(16.0),
+              margin: const EdgeInsets.all(16.0),
               child: Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Row(
                   children: [
                     Expanded(
@@ -259,7 +310,7 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.all(16.0),
+                      margin: const EdgeInsets.all(16.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -271,10 +322,10 @@ class _HomepageState extends State<Homepage> {
                                 height: 16,
                                 color: const Color(0xff0293ee),
                               ),
-                              SizedBox(width: 8),
+                              const SizedBox(width: 8),
                               Text(
                                 '${(double.tryParse(maleCount) ?? 0).round()} Male',
-                                style: TextStyle(fontSize: 16),
+                                style: const TextStyle(fontSize: 16),
                               ),
                             ],
                           ),
@@ -285,10 +336,10 @@ class _HomepageState extends State<Homepage> {
                                 height: 16,
                                 color: const Color(0xfff8b250),
                               ),
-                              SizedBox(width: 8),
+                              const SizedBox(width: 8),
                               Text(
                                 '${(double.tryParse(femaleCount) ?? 0).round()} Female',
-                                style: TextStyle(fontSize: 16),
+                                style: const TextStyle(fontSize: 16),
                               ),
                             ],
                           ),
@@ -319,13 +370,13 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   Expanded(
                     child: Card(
-                      margin: EdgeInsets.all(16.0),
+                      margin: const EdgeInsets.all(16.0),
                       child: Padding(
-                        padding: EdgeInsets.all(25.0),
+                        padding: const EdgeInsets.all(25.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               "Umur",
                               style: TextStyle(
                                 fontSize: 20,
@@ -334,12 +385,12 @@ class _HomepageState extends State<Homepage> {
                             ),
                             Text(
                               "${error ?? age}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 50,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            Text(
+                            const Text(
                               "Tahun",
                               style: TextStyle(
                                 fontSize: 20,
@@ -353,13 +404,13 @@ class _HomepageState extends State<Homepage> {
                   ),
                   Expanded(
                     child: Card(
-                      margin: EdgeInsets.all(16.0),
+                      margin: const EdgeInsets.all(16.0),
                       child: Padding(
-                        padding: EdgeInsets.all(25.0),
+                        padding: const EdgeInsets.all(25.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               "Nilai",
                               style: TextStyle(
                                 fontSize: 20,
@@ -368,12 +419,12 @@ class _HomepageState extends State<Homepage> {
                             ),
                             Text(
                               "${error ?? gpa}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 50,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            Text(
+                            const Text(
                               "IPK / GPA",
                               style: TextStyle(
                                 fontSize: 20,
@@ -401,6 +452,16 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
             ),
+            const SizedBox(height: 220),
+            Center(
+              child: SizedBox(
+                height: 70,
+                child: MyBarGraph(
+                  countryData: countryData,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
             Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -414,7 +475,7 @@ class _HomepageState extends State<Homepage> {
                       child: ListTile(
                         title: Text(
                           "${item['count']} Respondents",
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.w600,
                           ),
@@ -429,54 +490,10 @@ class _HomepageState extends State<Homepage> {
                     ),
                   );
                 }).toList(),
-                SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => GenrePieChart(),
-                          ),
-                        );
-                      },
-                      style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(
-                          Size(MediaQuery.of(context).size.width / 2 - 25, 45),
-                        ),
-                        backgroundColor: MaterialStateProperty.all(
-                          Color.fromARGB(255, 205, 0, 0),
-                        ),
-                      ),
-                      child: Text('Genre Pie Chart'),
-                    ),
-                    SizedBox(width: 10),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => NationalityPieChart(),
-                          ),
-                        );
-                      },
-                      style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(
-                          Size(MediaQuery.of(context).size.width / 2 - 25, 45),
-                        ),
-                        backgroundColor: MaterialStateProperty.all(
-                          Color.fromARGB(255, 205, 0, 0),
-                        ),
-                      ),
-                      child: Text('Nationality Pie Chart'),
-                    ),
-                  ],
-                )
+                const SizedBox(height: 20),
               ],
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(21.0),
               child: SizedBox(
                 height: 20,
@@ -489,16 +506,29 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
             ),
+            const SizedBox(height: 120),
+            Padding(
+              padding: const EdgeInsets.only(left: 17, right: 17),
+              child: Center(
+                child: SizedBox(
+                  height: 100,
+                  child: MyBarGraph2(
+                    genreData: genreData,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
             ...?data
                 ?.map((item) => Padding(
-                      padding: EdgeInsets.only(left: 16.0, right: 16.0),
+                      padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                       child: Card(
                         color: Colors.white,
                         elevation: 2.0,
                         child: ListTile(
                           title: Text(
                             "${item['Genre']}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.w600,
                             ),
@@ -510,8 +540,8 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ))
                 .toList(),
-            SizedBox(height: 20),
-            Center(
+            const SizedBox(height: 20),
+            const Center(
               child: Text(
                 "Copyright © 2023 Kelompok3. All Rights Reserved",
                 style: TextStyle(
@@ -520,7 +550,7 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
           ],
         ),
       ),
