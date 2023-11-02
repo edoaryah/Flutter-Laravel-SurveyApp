@@ -10,13 +10,22 @@ import 'package:flutter_survey_dashboard/charts/bar_chart2/bar_data.dart';
 import 'package:flutter_survey_dashboard/charts/bar_chart2/bar_graph.dart';
 
 String urlDomain = 'http://192.168.1.15:8000/';
-String urlTotalRespondents = urlDomain + 'api/total-respondents';
-String urlRespondentsByGender = urlDomain + 'api/respondents-by-gender';
-String urlAverageAge = urlDomain + 'api/average-age';
-String urlAverageGpa = urlDomain + 'api/average-gpa';
-String urlRespondentsByGenre = urlDomain + 'api/respondents-by-genre';
-String urlRespondentsByNationality =
-    urlDomain + 'api/respondents-by-nationality';
+
+String totalRespondents = 'api/total-respondents';
+String respondentsByGender = 'api/respondents-by-gender';
+String averageAge = 'api/average-age';
+String averageGpa = 'api/average-gpa';
+String respondentsByGenre = 'api/respondents-by-genre';
+String respondentsByNationality = 'api/respondents-by-nationality';
+String surveyDetails = 'api/survey-details';
+
+String urlTotalRespondents = urlDomain + totalRespondents;
+String urlRespondentsByGender = urlDomain + respondentsByGender;
+String urlAverageAge = urlDomain + averageAge;
+String urlAverageGpa = urlDomain + averageGpa;
+String urlRespondentsByGenre = urlDomain + respondentsByGenre;
+String urlRespondentsByNationality = urlDomain + respondentsByNationality;
+String urlSurveyDetails = urlDomain + surveyDetails;
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});

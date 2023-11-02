@@ -4,8 +4,6 @@ import 'package:country_flags/country_flags.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-String urlSurveyDetails = urlDomain + 'api/survey-details';
-
 class Listpage extends StatefulWidget {
   const Listpage({super.key});
 
