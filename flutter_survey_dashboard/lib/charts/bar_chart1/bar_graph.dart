@@ -5,7 +5,7 @@ import 'package:flutter_survey_dashboard/charts/bar_chart1/individual_bar.dart';
 
 class MyBarGraph extends StatelessWidget {
   final List<CountryPopulation> countryData;
-  const MyBarGraph({Key? key, required this.countryData});
+  const MyBarGraph({super.key, required this.countryData});
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +47,9 @@ class MyBarGraph extends StatelessWidget {
               final data = countryData[groupIndex];
               final percentage = (data.count / 1005) * 100;
               return BarTooltipItem(
-                '${percentage.toStringAsFixed(2)}%', // Display the percentage as the tooltip
-                TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                '${percentage.toStringAsFixed(2)}%',
+                const TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.bold),
               );
             },
           ),

@@ -225,7 +225,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                     const SizedBox(height: 16.0),
                     Text(
-                      "${error ?? total}",
+                      error ?? total,
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
@@ -344,7 +344,7 @@ class _HomepageState extends State<Homepage> {
                               ),
                             ),
                             Text(
-                              "${error ?? age}",
+                              error ?? age,
                               style: const TextStyle(
                                 fontSize: 50,
                                 fontWeight: FontWeight.w600,
@@ -378,7 +378,7 @@ class _HomepageState extends State<Homepage> {
                               ),
                             ),
                             Text(
-                              "${error ?? gpa}",
+                              error ?? gpa,
                               style: const TextStyle(
                                 fontSize: 50,
                                 fontWeight: FontWeight.w600,
@@ -487,7 +487,7 @@ class _HomepageState extends State<Homepage> {
                         elevation: 2.0,
                         child: ListTile(
                           title: Text(
-                            "${item.nationality}",
+                            item.nationality,
                             style: const TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.w600,
