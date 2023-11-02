@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_dashboard/pages/homepage.dart';
 import 'package:flutter_survey_dashboard/pages/listpage.dart';
@@ -14,8 +12,8 @@ class LayoutNavigationBar extends StatefulWidget {
 class _LayoutNavigationBar extends State<LayoutNavigationBar> {
   int _currentIndex = 1;
   final List<Widget> _children = [
-    Listpage(),
-    Homepage(),
+    const Listpage(),
+    const Homepage(),
   ];
 
   @override
@@ -23,7 +21,7 @@ class _LayoutNavigationBar extends State<LayoutNavigationBar> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dashboard'),
-        backgroundColor: Color.fromARGB(255, 205, 0, 0),
+        backgroundColor: const Color.fromARGB(255, 205, 0, 0),
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

@@ -1,6 +1,3 @@
-// import 'package:country_code_picker/country_code_picker.dart';
-// ignore_for_file: prefer_const_constructors, unnecessary_string_escapes, avoid_print, prefer_interpolation_to_compose_strings
-
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_dashboard/pages/homepage.dart';
 import 'package:country_flags/country_flags.dart';
@@ -34,7 +31,7 @@ class _ListpageState extends State<Listpage> {
       },
     );
 
-    print('Response body: ${response.body}');
+    // print('Response body: ${response.body}');
     if (response.statusCode == 200) {
       try {
         final jsonBody = json.decode(response.body);
@@ -53,7 +50,7 @@ class _ListpageState extends State<Listpage> {
           throw Exception('Invalid JSON format');
         }
       } catch (e) {
-        print('Error decoding JSON: $e');
+        // print('Error decoding JSON: $e');
         throw Exception('Failed to load data');
       }
     } else {
@@ -123,7 +120,6 @@ class _ListpageState extends State<Listpage> {
                     color: Colors.white,
                     elevation: 2.0,
                     child: ListTile(
-                      //listile
                       leading: const CircleAvatar(
                         backgroundColor: Colors.blue,
                         child: Icon(
@@ -141,9 +137,9 @@ class _ListpageState extends State<Listpage> {
                       subtitle: Row(
                         children: [
                           Text(survey['Gender'] == 'M' ? 'Male' : 'Female'),
-                          Text(' | '),
+                          const Text(' | '),
                           Text('${survey['Age'] ?? ''} y.o.'),
-                          Text(' | '),
+                          const Text(' | '),
                           Text('Tingkat ${survey['Year'] ?? ''}'),
                         ],
                       ),
@@ -163,7 +159,7 @@ class _ListpageState extends State<Listpage> {
                                   Text('Reports: ${survey['Reports'] ?? ''}'),
                               actions: <Widget>[
                                 TextButton(
-                                  child: Text('Close'),
+                                  child: const Text('Close'),
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },

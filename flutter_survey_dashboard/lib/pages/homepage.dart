@@ -33,33 +33,29 @@ class _HomepageState extends State<Homepage> {
   String femaleCount = '-';
   String age = '0';
   String gpa = '0';
-
   String? error;
-  List? data;
-  List? country;
 
+  _HomepageState();
   @override
   void initState() {
     super.initState();
-    fetchData();
+    fetchData1();
     fetchData2();
     fetchData3();
     fetchData4();
-    fetchData5();
-    fetchData6();
-    fetchData7().then((data) {
+    fetchData5().then((data) {
       setState(() {
         countryData = data;
       });
     });
-    fetchData8().then((data) {
+    fetchData6().then((data) {
       setState(() {
         genreData = data;
       });
     });
   }
 
-  Future<void> fetchData() async {
+  Future<void> fetchData1() async {
     try {
       final response = await http.get(Uri.parse(urlTotalRespondents));
 
@@ -82,8 +78,6 @@ class _HomepageState extends State<Homepage> {
       final response = await http.get(Uri.parse(urlRespondentsByGender));
 
       if (response.statusCode == 200) {
-        print('Response body: ${response.body}');
-
         var data = json.decode(response.body);
         for (var item in data) {
           if (item['Gender'] == 'M') {
@@ -142,50 +136,7 @@ class _HomepageState extends State<Homepage> {
     }
   }
 
-  Future<void> fetchData5() async {
-    try {
-      final response = await http.get(Uri.parse(urlRespondentsByGenre));
-
-      print('Response body: ${response.body}');
-
-      if (response.statusCode == 200) {
-        var responseData = json.decode(response.body);
-        if (responseData is List) {
-          setState(() {
-            data = responseData;
-          });
-        } else {
-          throw Exception('Failed to parse response data');
-        }
-      } else {
-        throw Exception('Failed to load data');
-      }
-    } catch (e) {
-      setState(() {
-        error = e.toString();
-      });
-    }
-  }
-
-  Future<void> fetchData6() async {
-    try {
-      final response = await http.get(Uri.parse(urlRespondentsByNationality));
-
-      if (response.statusCode == 200) {
-        setState(() {
-          country = json.decode(response.body);
-        });
-      } else {
-        throw Exception('Failed to load data');
-      }
-    } catch (e) {
-      setState(() {
-        error = e.toString();
-      });
-    }
-  }
-
-  Future<List<CountryPopulation>> fetchData7() async {
+  Future<List<CountryPopulation>> fetchData5() async {
     try {
       final response = await http.get(Uri.parse(urlRespondentsByNationality));
 
@@ -205,7 +156,7 @@ class _HomepageState extends State<Homepage> {
     }
   }
 
-  Future<List<GenreTotal>> fetchData8() async {
+  Future<List<GenreTotal>> fetchData6() async {
     try {
       final response = await http.get(Uri.parse(urlRespondentsByGenre));
 
@@ -465,8 +416,8 @@ class _HomepageState extends State<Homepage> {
             Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                ...?country?.map((item) {
-                  final countryCode = getCountryCode(item['Nationality']);
+                ...(countryData).map((item) {
+                  final countryCode = getCountryCode(item.nationality);
                   return Padding(
                     padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                     child: Card(
@@ -474,9 +425,9 @@ class _HomepageState extends State<Homepage> {
                       elevation: 2.0,
                       child: ListTile(
                         title: Text(
-                          "${item['count']} Respondents",
+                          "${item.count.toStringAsFixed(0)} Respondents from ${item.nationality}",
                           style: const TextStyle(
-                            fontSize: 20.0,
+                            fontSize: 17.0,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -519,22 +470,24 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
             const SizedBox(height: 20),
-            ...?data
-                ?.map((item) => Padding(
+            ...genreData
+                .map((item) => Padding(
                       padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                       child: Card(
                         color: Colors.white,
                         elevation: 2.0,
                         child: ListTile(
                           title: Text(
-                            "${item['Genre']}",
+                            "${item.nationality}",
                             style: const TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
                           subtitle: Row(
-                            children: [Text('${item['count']} Responden')],
+                            children: [
+                              Text('${item.count.toStringAsFixed(0)} Responden')
+                            ],
                           ),
                         ),
                       ),
