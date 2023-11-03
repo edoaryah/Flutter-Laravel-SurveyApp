@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:country_flags/country_flags.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:flutter_survey_dashboard/pages/homepage.dart';
+
+import 'package:flutter_survey_dashboard/models/survey_detail.dart';
+import 'package:flutter_survey_dashboard/services/service.dart';
 
 class Listpage extends StatefulWidget {
   const Listpage({super.key});
@@ -189,64 +189,5 @@ class _ListpageState extends State<Listpage> {
               ),
       ),
     );
-  }
-}
-
-class SurveyDetails {
-  final int id;
-  final String genre;
-  final String reports;
-  final int age;
-  final String gpa;
-  final int year;
-  final String gender;
-  final String nationality;
-
-  SurveyDetails({
-    required this.id,
-    required this.genre,
-    required this.reports,
-    required this.age,
-    required this.gpa,
-    required this.year,
-    required this.gender,
-    required this.nationality,
-  });
-
-  factory SurveyDetails.fromJson(Map<String, dynamic> parsedJson) {
-    return SurveyDetails(
-      id: parsedJson['id'] as int,
-      genre: parsedJson['Genre'] as String,
-      reports: parsedJson['Reports'] as String,
-      age: parsedJson['Age'] as int,
-      gpa: parsedJson['Gpa'] as String,
-      year: parsedJson['Year'] as int,
-      gender: parsedJson['Gender'] as String,
-      nationality: parsedJson['Nationality'] as String,
-    );
-  }
-}
-
-class HttpSurveyDetails {
-  Future<Map<String, dynamic>> getSurveyDetails(int page, int perPage) async {
-    var response = await http
-        .get(Uri.parse('$urlSurveyDetails?page=$page&perPage=$perPage'));
-
-    if (response.statusCode == 200) {
-      var data = json.decode(response.body);
-      var items = data['data']
-          .map<SurveyDetails>((item) => SurveyDetails.fromJson(item))
-          .toList();
-
-      return {
-        'items': items,
-        'total': data['total'],
-        'perPage': data['per_page'],
-        'currentPage': data['current_page'],
-        'lastPage': data['last_page'],
-      };
-    } else {
-      throw Exception('Failed to load survey details');
-    }
   }
 }
