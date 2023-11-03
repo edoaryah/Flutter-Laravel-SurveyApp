@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 import 'package:flutter_survey_dashboard/pages/homepage.dart';
 
 class Listpage extends StatefulWidget {
@@ -31,15 +30,13 @@ class _ListpageState extends State<Listpage> {
     try {
       final data =
           await service.getSurveyDetails(currentPage, surveyDetailsPerPage);
-      if (data != null) {
-        setState(() {
-          surveyDetails = data['items'];
-          totalPages = data['lastPage'];
-          isLoading = false;
-        });
-      }
+      setState(() {
+        surveyDetails = data['items'];
+        totalPages = data['lastPage'];
+        isLoading = false;
+      });
     } catch (e) {
-      print("Error: $e");
+      // print("Error: $e");
       setState(() {
         isLoading = false;
       });
@@ -52,21 +49,14 @@ class _ListpageState extends State<Listpage> {
         isLoading = true;
       });
       final data = await service.getSurveyDetails(page, surveyDetailsPerPage);
-      if (data != null) {
-        setState(() {
-          surveyDetails = data['items'];
-          totalPages = data['lastPage'];
-          currentPage = page;
-          isLoading = false;
-        });
-      } else {
-        print("Data is null.");
-        setState(() {
-          isLoading = false;
-        });
-      }
+      setState(() {
+        surveyDetails = data['items'];
+        totalPages = data['lastPage'];
+        currentPage = page;
+        isLoading = false;
+      });
     } catch (e) {
-      print("Error: $e");
+      // print("Error: $e");
       setState(() {
         isLoading = false;
       });
@@ -104,7 +94,7 @@ class _ListpageState extends State<Listpage> {
             : Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ElevatedButton(
                         onPressed: currentPage > 1
@@ -116,7 +106,7 @@ class _ListpageState extends State<Listpage> {
                                 });
                               }
                             : null,
-                        child: const Text("Previous Page"),
+                        child: const Text("Prev Page"),
                       ),
                       Text("Page $currentPage of $totalPages"),
                       ElevatedButton(
