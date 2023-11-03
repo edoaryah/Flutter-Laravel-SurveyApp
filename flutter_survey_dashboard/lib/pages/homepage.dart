@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_survey_dashboard/models/genre.dart';
+import 'package:flutter_survey_dashboard/models/nationality.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:country_flags/country_flags.dart';
@@ -18,12 +20,25 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  List<CountryPopulation> countryData = [];
-  List<GenreTotal> genreData = [];
-  String total = '-';
+  //penambahan
+  late HttpTotalRespondents serviceTotalRespondents;
+  late HttpGenreRespondents serviceGenreRespondents;
+  late HttpNationalityRespondents serviceNationalityRespondents;
+  late HttpAverageAgeRespondents serviceAverageAgeRespondents;
+  late HttpAverageGpaRespondents serviceAverageGpaRespondents;
+
+  int? total1;
+  double? age1;
+  double? gpa1;
+  List<GenreRespondents>? genreRespondents;
+  List<NationalityRespondents>? nationalityRespondents;
+
+  String? error1;
+  //--
+  // String total = '-';
   String maleCount = '-';
   String femaleCount = '-';
-  String age = '0';
+  // String age = '0';
   String gpa = '0';
   String? error;
 
@@ -31,39 +46,45 @@ class _HomepageState extends State<Homepage> {
   @override
   void initState() {
     super.initState();
-    fetchData1();
+    //penambahan
+    serviceTotalRespondents = HttpTotalRespondents();
+    serviceGenreRespondents = HttpGenreRespondents();
+    serviceNationalityRespondents = HttpNationalityRespondents();
+    serviceAverageAgeRespondents = HttpAverageAgeRespondents();
+    serviceAverageGpaRespondents = HttpAverageGpaRespondents();
+    fetchData();
+    //--
     fetchData2();
-    fetchData3();
+    // fetchData3();
     fetchData4();
-    fetchData5().then((data) {
-      setState(() {
-        countryData = data;
-      });
-    });
-    fetchData6().then((data) {
-      setState(() {
-        genreData = data;
-      });
-    });
   }
 
-  Future<void> fetchData1() async {
+  //penambahan
+  Future<void> fetchData() async {
     try {
-      final response = await http.get(Uri.parse(urlTotalRespondents));
-
-      if (response.statusCode == 200) {
-        setState(() {
-          total = response.body;
-        });
-      } else {
-        throw Exception('Failed to load data');
-      }
+      final result = await serviceTotalRespondents.getTotalRespondents();
+      final genreResult = await serviceGenreRespondents.getGenreRespondents();
+      final nationalityResult =
+          await serviceNationalityRespondents.getNationalityRespondents();
+      final averageAgeResult =
+          await serviceAverageAgeRespondents.getAverageAgeRespondents();
+      final averageGpaResult =
+          await serviceAverageGpaRespondents.getAverageGpaRespondents();
+      setState(() {
+        total1 = result.total;
+        genreRespondents = genreResult;
+        nationalityRespondents = nationalityResult;
+        age1 = averageAgeResult.age;
+        gpa1 = averageGpaResult.gpa;
+      });
     } catch (e) {
       setState(() {
         error = e.toString();
       });
     }
   }
+
+  //--
 
   Future<void> fetchData2() async {
     try {
@@ -92,23 +113,23 @@ class _HomepageState extends State<Homepage> {
     }
   }
 
-  Future<void> fetchData3() async {
-    try {
-      final response = await http.get(Uri.parse(urlAverageAge));
+  // Future<void> fetchData3() async {
+  //   try {
+  //     final response = await http.get(Uri.parse(urlAverageAge));
 
-      if (response.statusCode == 200) {
-        setState(() {
-          age = response.body;
-        });
-      } else {
-        throw Exception('Failed to load data');
-      }
-    } catch (e) {
-      setState(() {
-        error = e.toString();
-      });
-    }
-  }
+  //     if (response.statusCode == 200) {
+  //       setState(() {
+  //         age = response.body;
+  //       });
+  //     } else {
+  //       throw Exception('Failed to load data');
+  //     }
+  //   } catch (e) {
+  //     setState(() {
+  //       error = e.toString();
+  //     });
+  //   }
+  // }
 
   Future<void> fetchData4() async {
     try {
@@ -125,46 +146,6 @@ class _HomepageState extends State<Homepage> {
       setState(() {
         error = e.toString();
       });
-    }
-  }
-
-  Future<List<CountryPopulation>> fetchData5() async {
-    try {
-      final response = await http.get(Uri.parse(urlRespondentsByNationality));
-
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body) as List<dynamic>;
-        final countryData = data
-            .map((item) => CountryPopulation(
-                nationality: item['Nationality'],
-                count: double.parse(item['count'].toString())))
-            .toList();
-        return countryData;
-      } else {
-        throw Exception('Failed to load data');
-      }
-    } catch (e) {
-      throw Exception(e.toString());
-    }
-  }
-
-  Future<List<GenreTotal>> fetchData6() async {
-    try {
-      final response = await http.get(Uri.parse(urlRespondentsByGenre));
-
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body) as List<dynamic>;
-        final genreData = data
-            .map((item) => GenreTotal(
-                nationality: item['Genre'],
-                count: double.parse(item['count'].toString())))
-            .toList();
-        return genreData;
-      } else {
-        throw Exception('Failed to load data');
-      }
-    } catch (e) {
-      throw Exception(e.toString());
     }
   }
 
@@ -208,7 +189,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                     const SizedBox(height: 16.0),
                     Text(
-                      'Total Respondents : ${error ?? total}',
+                      'Total Respondents : ${error1 ?? total1}',
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
@@ -327,7 +308,7 @@ class _HomepageState extends State<Homepage> {
                               ),
                             ),
                             Text(
-                              error ?? age,
+                              '${error1 ?? age1}',
                               style: const TextStyle(
                                 fontSize: 50,
                                 fontWeight: FontWeight.w600,
@@ -361,7 +342,7 @@ class _HomepageState extends State<Homepage> {
                               ),
                             ),
                             Text(
-                              error ?? gpa,
+                              '${error1 ?? gpa1}',
                               style: const TextStyle(
                                 fontSize: 50,
                                 fontWeight: FontWeight.w600,
@@ -399,16 +380,22 @@ class _HomepageState extends State<Homepage> {
             Center(
               child: SizedBox(
                 height: 70,
-                child: MyBarGraph(
-                  countryData: countryData,
-                ),
+                child: nationalityRespondents != null
+                    ? MyBarGraph(
+                        countryData: nationalityRespondents!
+                            .map((item) => CountryPopulation(
+                                nationality: item.nationality,
+                                count: item.count.toDouble()))
+                            .toList(),
+                      )
+                    : const CircularProgressIndicator(),
               ),
             ),
             const SizedBox(height: 20),
             Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                ...(countryData).map((item) {
+                ...(nationalityRespondents ?? []).map((item) {
                   final countryCode = getCountryCode(item.nationality);
                   return Padding(
                     padding: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -433,7 +420,6 @@ class _HomepageState extends State<Homepage> {
                     ),
                   );
                 }).toList(),
-                const SizedBox(height: 20),
               ],
             ),
             const Padding(
@@ -455,36 +441,43 @@ class _HomepageState extends State<Homepage> {
               child: Center(
                 child: SizedBox(
                   height: 100,
-                  child: MyBarGraph2(
-                    genreData: genreData,
-                  ),
+                  child: genreRespondents != null
+                      ? MyBarGraph2(
+                          genreData: genreRespondents!
+                              .map((item) => GenreTotal(
+                                  nationality: item.genre,
+                                  count: item.count.toDouble()))
+                              .toList(),
+                        )
+                      : const CircularProgressIndicator(),
                 ),
               ),
             ),
             const SizedBox(height: 20),
-            ...genreData
-                .map((item) => Padding(
-                      padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-                      child: Card(
-                        color: Colors.white,
-                        elevation: 2.0,
-                        child: ListTile(
-                          title: Text(
-                            item.nationality,
-                            style: const TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.w600,
+            if (genreRespondents != null)
+              ...genreRespondents!
+                  .map((item) => Padding(
+                        padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                        child: Card(
+                          color: Colors.white,
+                          elevation: 2.0,
+                          child: ListTile(
+                            title: Text(
+                              item.genre,
+                              style: const TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            subtitle: Row(
+                              children: [
+                                Text('${item.count.toString()} Responden')
+                              ],
                             ),
                           ),
-                          subtitle: Row(
-                            children: [
-                              Text('${item.count.toStringAsFixed(0)} Responden')
-                            ],
-                          ),
                         ),
-                      ),
-                    ))
-                .toList(),
+                      ))
+                  .toList(),
             const SizedBox(height: 20),
             const Center(
               child: Text(
