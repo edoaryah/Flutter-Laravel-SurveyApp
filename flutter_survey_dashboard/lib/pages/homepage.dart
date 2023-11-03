@@ -35,11 +35,8 @@ class _HomepageState extends State<Homepage> {
 
   String? error1;
   //--
-  // String total = '-';
   String maleCount = '-';
   String femaleCount = '-';
-  // String age = '0';
-  String gpa = '0';
   String? error;
 
   _HomepageState();
@@ -55,8 +52,6 @@ class _HomepageState extends State<Homepage> {
     fetchData();
     //--
     fetchData2();
-    // fetchData3();
-    fetchData4();
   }
 
   //penambahan
@@ -79,7 +74,7 @@ class _HomepageState extends State<Homepage> {
       });
     } catch (e) {
       setState(() {
-        error = e.toString();
+        error1 = e.toString();
       });
     }
   }
@@ -103,42 +98,6 @@ class _HomepageState extends State<Homepage> {
             });
           }
         }
-      } else {
-        throw Exception('Failed to load data');
-      }
-    } catch (e) {
-      setState(() {
-        error = e.toString();
-      });
-    }
-  }
-
-  // Future<void> fetchData3() async {
-  //   try {
-  //     final response = await http.get(Uri.parse(urlAverageAge));
-
-  //     if (response.statusCode == 200) {
-  //       setState(() {
-  //         age = response.body;
-  //       });
-  //     } else {
-  //       throw Exception('Failed to load data');
-  //     }
-  //   } catch (e) {
-  //     setState(() {
-  //       error = e.toString();
-  //     });
-  //   }
-  // }
-
-  Future<void> fetchData4() async {
-    try {
-      final response = await http.get(Uri.parse(urlAverageGpa));
-
-      if (response.statusCode == 200) {
-        setState(() {
-          gpa = response.body;
-        });
       } else {
         throw Exception('Failed to load data');
       }

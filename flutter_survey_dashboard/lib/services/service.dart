@@ -52,7 +52,7 @@ class HttpSurveyDetails {
 
 class HttpTotalRespondents {
   Future<TotalRespondents> getTotalRespondents() async {
-    var response = await http.get(Uri.parse('$urlTotalRespondents'));
+    var response = await http.get(Uri.parse(urlTotalRespondents));
 
     if (response.statusCode == 200) {
       var total = int.parse(response.body);
@@ -65,7 +65,7 @@ class HttpTotalRespondents {
 
 class HttpAverageAgeRespondents {
   Future<AverageAgeRespondents> getAverageAgeRespondents() async {
-    var response = await http.get(Uri.parse('$urlAverageAge'));
+    var response = await http.get(Uri.parse(urlAverageAge));
 
     if (response.statusCode == 200) {
       var age = double.parse(response.body);
@@ -78,7 +78,7 @@ class HttpAverageAgeRespondents {
 
 class HttpAverageGpaRespondents {
   Future<AverageGpaRespondents> getAverageGpaRespondents() async {
-    var response = await http.get(Uri.parse('$urlAverageGpa'));
+    var response = await http.get(Uri.parse(urlAverageGpa));
 
     if (response.statusCode == 200) {
       var gpa = double.parse(response.body);
@@ -91,7 +91,7 @@ class HttpAverageGpaRespondents {
 
 class HttpGenreRespondents {
   Future<List<GenreRespondents>> getGenreRespondents() async {
-    var response = await http.get(Uri.parse('$urlRespondentsByGenre'));
+    var response = await http.get(Uri.parse(urlRespondentsByGenre));
 
     if (response.statusCode == 200) {
       var list = json.decode(response.body) as List;
@@ -104,7 +104,7 @@ class HttpGenreRespondents {
 
 class HttpNationalityRespondents {
   Future<List<NationalityRespondents>> getNationalityRespondents() async {
-    var response = await http.get(Uri.parse('$urlRespondentsByNationality'));
+    var response = await http.get(Uri.parse(urlRespondentsByNationality));
 
     if (response.statusCode == 200) {
       var list = json.decode(response.body) as List;
