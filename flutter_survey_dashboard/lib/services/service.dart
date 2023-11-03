@@ -1,5 +1,6 @@
 import 'package:flutter_survey_dashboard/models/average_age.dart';
 import 'package:flutter_survey_dashboard/models/average_gpa.dart';
+import 'package:flutter_survey_dashboard/models/gender.dart';
 import 'package:flutter_survey_dashboard/models/genre.dart';
 import 'package:flutter_survey_dashboard/models/nationality.dart';
 import 'package:flutter_survey_dashboard/models/total_respondent.dart';
@@ -85,6 +86,19 @@ class HttpAverageGpaRespondents {
       return AverageGpaRespondents.fromJson(gpa);
     } else {
       throw Exception('Failed to load total respondents');
+    }
+  }
+}
+
+class HttpGenderRespondents {
+  Future<List<GenderRespondents>> getGenderRespondents() async {
+    var response = await http.get(Uri.parse(urlRespondentsByGender));
+
+    if (response.statusCode == 200) {
+      var list = json.decode(response.body) as List;
+      return list.map((item) => GenderRespondents.fromJson(item)).toList();
+    } else {
+      throw Exception('Failed to load gender respondents');
     }
   }
 }

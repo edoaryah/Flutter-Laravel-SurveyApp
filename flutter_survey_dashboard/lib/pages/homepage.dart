@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_survey_dashboard/models/gender.dart';
 import 'package:flutter_survey_dashboard/models/genre.dart';
 import 'package:flutter_survey_dashboard/models/nationality.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:country_flags/country_flags.dart';
 import 'package:fl_chart/fl_chart.dart';
 
@@ -20,41 +19,36 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  //penambahan
   late HttpTotalRespondents serviceTotalRespondents;
   late HttpGenreRespondents serviceGenreRespondents;
   late HttpNationalityRespondents serviceNationalityRespondents;
   late HttpAverageAgeRespondents serviceAverageAgeRespondents;
   late HttpAverageGpaRespondents serviceAverageGpaRespondents;
+  late HttpGenderRespondents serviceGenderRespondents;
 
   int? total1;
   double? age1;
   double? gpa1;
   List<GenreRespondents>? genreRespondents;
   List<NationalityRespondents>? nationalityRespondents;
+  List<GenderRespondents>? genderRespondents;
 
   String? error1;
-  //--
-  String maleCount = '-';
-  String femaleCount = '-';
   String? error;
 
   _HomepageState();
   @override
   void initState() {
     super.initState();
-    //penambahan
     serviceTotalRespondents = HttpTotalRespondents();
     serviceGenreRespondents = HttpGenreRespondents();
     serviceNationalityRespondents = HttpNationalityRespondents();
     serviceAverageAgeRespondents = HttpAverageAgeRespondents();
     serviceAverageGpaRespondents = HttpAverageGpaRespondents();
+    serviceGenderRespondents = HttpGenderRespondents();
     fetchData();
-    //--
-    fetchData2();
   }
 
-  //penambahan
   Future<void> fetchData() async {
     try {
       final result = await serviceTotalRespondents.getTotalRespondents();
@@ -65,45 +59,19 @@ class _HomepageState extends State<Homepage> {
           await serviceAverageAgeRespondents.getAverageAgeRespondents();
       final averageGpaResult =
           await serviceAverageGpaRespondents.getAverageGpaRespondents();
+      final genderResult =
+          await serviceGenderRespondents.getGenderRespondents();
       setState(() {
         total1 = result.total;
         genreRespondents = genreResult;
         nationalityRespondents = nationalityResult;
         age1 = averageAgeResult.age;
         gpa1 = averageGpaResult.gpa;
+        genderRespondents = genderResult;
       });
     } catch (e) {
       setState(() {
         error1 = e.toString();
-      });
-    }
-  }
-
-  //--
-
-  Future<void> fetchData2() async {
-    try {
-      final response = await http.get(Uri.parse(urlRespondentsByGender));
-
-      if (response.statusCode == 200) {
-        var data = json.decode(response.body);
-        for (var item in data) {
-          if (item['Gender'] == 'M') {
-            setState(() {
-              maleCount = item['count'].toString();
-            });
-          } else if (item['Gender'] == 'F') {
-            setState(() {
-              femaleCount = item['count'].toString();
-            });
-          }
-        }
-      } else {
-        throw Exception('Failed to load data');
-      }
-    } catch (e) {
-      setState(() {
-        error = e.toString();
       });
     }
   }
@@ -159,80 +127,64 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
             ),
-            Card(
-              margin: const EdgeInsets.all(16.0),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: AspectRatio(
-                        aspectRatio: 1.3,
-                        child: PieChart(
-                          PieChartData(
-                            sections: [
-                              PieChartSectionData(
-                                value: double.tryParse(maleCount) ?? 0.0,
-                                color: const Color(0xff0293ee),
-                                title:
-                                    '${((double.tryParse(maleCount) ?? 0.0) / ((double.tryParse(maleCount) ?? 0.0) + (double.tryParse(femaleCount) ?? 0.0)) * 100).toStringAsFixed(2)}%',
-                                radius: 75,
-                              ),
-                              PieChartSectionData(
-                                value: double.tryParse(femaleCount) ?? 0.0,
-                                color: const Color(0xfff8b250),
-                                title:
-                                    '${((double.tryParse(femaleCount) ?? 0.0) / ((double.tryParse(maleCount) ?? 0.0) + (double.tryParse(femaleCount) ?? 0.0)) * 100).toStringAsFixed(2)}%',
-                                radius: 75,
-                              ),
-                            ],
-                            sectionsSpace: 0,
-                            centerSpaceRadius: 0,
+            if (genderRespondents != null)
+              Card(
+                margin: const EdgeInsets.all(16.0),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: AspectRatio(
+                          aspectRatio: 1.3,
+                          child: PieChart(
+                            PieChartData(
+                              sections: genderRespondents!
+                                  .map((item) => PieChartSectionData(
+                                        value: item.count.toDouble(),
+                                        color: item.gender == 'M'
+                                            ? const Color(0xff0293ee)
+                                            : const Color(0xfff8b250),
+                                        title:
+                                            '${((item.count.toDouble()) / (genderRespondents!.fold(0, (previousValue, element) => previousValue + element.count)) * 100).toStringAsFixed(2)}%',
+                                        radius: 75,
+                                      ))
+                                  .toList(),
+                              sectionsSpace: 0,
+                              centerSpaceRadius: 0,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.all(16.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                width: 16,
-                                height: 16,
-                                color: const Color(0xff0293ee),
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                '${(double.tryParse(maleCount) ?? 0).round()} Male',
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                width: 16,
-                                height: 16,
-                                color: const Color(0xfff8b250),
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                '${(double.tryParse(femaleCount) ?? 0).round()} Female',
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                        ],
+                      Container(
+                        margin: const EdgeInsets.all(16.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: genderRespondents!
+                              .map((item) => Row(
+                                    children: [
+                                      Container(
+                                        width: 16,
+                                        height: 16,
+                                        color: item.gender == 'M'
+                                            ? const Color(0xff0293ee)
+                                            : const Color(0xfff8b250),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      Text(
+                                        '${item.count} ${item.gender == 'M' ? 'Male' : 'Female'}',
+                                        style: const TextStyle(fontSize: 16),
+                                      ),
+                                    ],
+                                  ))
+                              .toList(),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
             const Padding(
               padding: EdgeInsets.only(left: 16.0),
               child: SizedBox(
