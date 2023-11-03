@@ -225,7 +225,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                     const SizedBox(height: 16.0),
                     Text(
-                      error ?? total,
+                      'Total Respondents : ${error ?? total}',
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
