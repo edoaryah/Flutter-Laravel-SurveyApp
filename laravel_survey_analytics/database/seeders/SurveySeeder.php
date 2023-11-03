@@ -10,6 +10,7 @@ class SurveySeeder extends Seeder
 {
     public function run()
     {
+        //arahkan ke path DataUTSMobileFixed.csv
         $csv = Reader::createFromPath('C:\Users\edoar\Documents\College\All Files\DataUTSMobileFixed.csv', 'r');
         $csv->setHeaderOffset(0);
 

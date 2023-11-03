@@ -9,7 +9,7 @@ class SurveyController extends Controller
     public function totalRespondents()
     {
         $totalRespondents = DB::table('surveys')->count();
-        return "Total Responden : $totalRespondents";
+        return $totalRespondents;
     }
 
     public function genreRespondents()
@@ -55,8 +55,13 @@ class SurveyController extends Controller
 
     public function surveyDetails()
     {
-        $surveyDetails = DB::table('surveys')->get();
-        return $surveyDetails;
+        $surveyDetails = DB::table('surveys')->paginate(20);
+        return [
+            'data' => $surveyDetails->items(),
+            'total' => $surveyDetails->total(),
+            'per_page' => $surveyDetails->perPage(),
+            'current_page' => $surveyDetails->currentPage(),
+            'last_page' => $surveyDetails->lastPage(),
+        ];
     }
-    
 }
