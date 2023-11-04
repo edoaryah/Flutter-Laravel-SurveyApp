@@ -24,7 +24,7 @@ class MyBarGraph extends StatelessWidget {
 
     return BarChart(
       BarChartData(
-        maxY: 100,
+        maxY: maxDataValue,
         minY: 0,
         gridData: const FlGridData(show: false),
         borderData: FlBorderData(show: false),

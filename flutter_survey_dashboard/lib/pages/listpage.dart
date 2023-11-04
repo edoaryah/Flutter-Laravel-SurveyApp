@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:country_flags/country_flags.dart';
 
-import 'package:flutter_survey_dashboard/models/survey_detail.dart';
 import 'package:flutter_survey_dashboard/services/service.dart';
+import 'package:flutter_survey_dashboard/models/survey_detail.dart';
 
 class Listpage extends StatefulWidget {
   const Listpage({super.key});
@@ -13,11 +13,13 @@ class Listpage extends StatefulWidget {
 
 class _ListpageState extends State<Listpage> {
   late HttpSurveyDetails service;
-  bool isLoading = true;
   List<SurveyDetails> surveyDetails = [];
+
   int currentPage = 1;
   int totalPages = 1;
   int surveyDetailsPerPage = 20;
+
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -36,7 +38,6 @@ class _ListpageState extends State<Listpage> {
         isLoading = false;
       });
     } catch (e) {
-      // print("Error: $e");
       setState(() {
         isLoading = false;
       });
@@ -56,29 +57,9 @@ class _ListpageState extends State<Listpage> {
         isLoading = false;
       });
     } catch (e) {
-      // print("Error: $e");
       setState(() {
         isLoading = false;
       });
-    }
-  }
-
-  String getCountryCode(String countryName) {
-    switch (countryName) {
-      case 'Indonesia':
-        return 'ID';
-      case 'Soudan':
-        return 'SD';
-      case 'France':
-        return 'FR';
-      case 'Mexico':
-        return 'MX';
-      case 'South Africa':
-        return 'ZA';
-      case 'Yemen':
-        return 'YE';
-      default:
-        return '';
     }
   }
 

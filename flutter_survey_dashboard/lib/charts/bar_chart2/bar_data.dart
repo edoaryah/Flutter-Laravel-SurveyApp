@@ -1,9 +1,9 @@
 class GenreTotal {
-  final String nationality;
+  final String genre;
   final double count;
 
   GenreTotal({
-    required this.nationality,
+    required this.genre,
     required this.count,
   });
 }

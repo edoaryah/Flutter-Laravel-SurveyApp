@@ -12,7 +12,7 @@ class MyBarGraph2 extends StatelessWidget {
     final uniqueIDs = assignUniqueIDs(genreData);
     final List<IndividualBar> bars = genreData
         .map((data) =>
-            IndividualBar(x: uniqueIDs[data.nationality] ?? 0, y: data.count))
+            IndividualBar(x: uniqueIDs[data.genre] ?? 0, y: data.count))
         .toList();
 
     double maxDataValue = 0;
@@ -24,7 +24,7 @@ class MyBarGraph2 extends StatelessWidget {
 
     return BarChart(
       BarChartData(
-        maxY: 100,
+        maxY: maxDataValue,
         minY: 0,
         gridData: const FlGridData(show: false),
         borderData: FlBorderData(show: false),
@@ -84,7 +84,7 @@ class MyBarGraph2 extends StatelessWidget {
 Map<String, int> assignUniqueIDs(List<GenreTotal> genreData) {
   final uniqueIDs = <String, int>{};
   for (int i = 0; i < genreData.length; i++) {
-    uniqueIDs[genreData[i].nationality] = i;
+    uniqueIDs[genreData[i].genre] = i;
   }
   return uniqueIDs;
 }
