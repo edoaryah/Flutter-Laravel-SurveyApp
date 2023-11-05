@@ -287,13 +287,14 @@ class _HomepageState extends State<Homepage> {
                         padding: const EdgeInsets.only(top: 16, bottom: 16),
                         child: SizedBox(
                           height: 250,
-                          child: nationalityRespondents != null
+                          child: nationalityRespondents != null && total != null
                               ? MyBarGraph(
                                   countryData: nationalityRespondents!
                                       .map((item) => CountryPopulation(
                                           nationality: item.nationality,
                                           count: item.count.toDouble()))
                                       .toList(),
+                                  totalRespondents: total!,
                                 )
                               : const CircularProgressIndicator(),
                         ),
@@ -363,13 +364,14 @@ class _HomepageState extends State<Homepage> {
                         padding: const EdgeInsets.only(top: 16, bottom: 16),
                         child: SizedBox(
                           height: 250,
-                          child: nationalityRespondents != null
+                          child: nationalityRespondents != null && total != null
                               ? MyBarGraph2(
                                   genreData: genreRespondents!
                                       .map((item) => GenreTotal(
                                           genre: item.genre,
                                           count: item.count.toDouble()))
                                       .toList(),
+                                  totalRespondents: total!,
                                 )
                               : const CircularProgressIndicator(),
                         ),
