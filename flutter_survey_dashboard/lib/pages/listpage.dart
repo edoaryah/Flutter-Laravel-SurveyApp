@@ -136,11 +136,18 @@ class _ListpageState extends State<Listpage> {
                                 Text('Tingkat ${survey.year}'),
                               ],
                             ),
-                            trailing: CountryFlag.fromCountryCode(
-                              getCountryCode(survey.nationality),
-                              height: 48,
-                              width: 40,
-                              // borderRadius: 8,
+                            trailing: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 1,
+                                ),
+                              ),
+                              child: CountryFlag.fromCountryCode(
+                                getCountryCode(survey.nationality),
+                                height: 38,
+                                width: 50,
+                              ),
                             ),
                             onTap: () {
                               showDialog(

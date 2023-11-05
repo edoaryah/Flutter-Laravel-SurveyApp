@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fl_chart/fl_chart.dart';
+// import 'package:fl_chart/fl_chart.dart';
 import 'package:country_flags/country_flags.dart';
+// import 'dart:math';
 
 import 'package:flutter_survey_dashboard/services/service.dart';
 import 'package:flutter_survey_dashboard/models/gender.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_survey_dashboard/charts/bar_chart1/bar_data.dart';
 import 'package:flutter_survey_dashboard/charts/bar_chart1/bar_graph.dart';
 import 'package:flutter_survey_dashboard/charts/bar_chart2/bar_data.dart';
 import 'package:flutter_survey_dashboard/charts/bar_chart2/bar_graph.dart';
+import 'package:flutter_survey_dashboard/charts/pie_chart/my_pie_chart.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -127,25 +129,8 @@ class _HomepageState extends State<Homepage> {
                           child: Row(
                             children: [
                               Expanded(
-                                child: AspectRatio(
-                                  aspectRatio: 1.3,
-                                  child: PieChart(
-                                    PieChartData(
-                                      sections: genderRespondents!
-                                          .map((item) => PieChartSectionData(
-                                                value: item.count.toDouble(),
-                                                color: item.gender == 'M'
-                                                    ? const Color(0xff0293ee)
-                                                    : const Color(0xfff8b250),
-                                                title:
-                                                    '${((item.count.toDouble()) / (genderRespondents!.fold(0, (previousValue, element) => previousValue + element.count)) * 100).toStringAsFixed(2)}%',
-                                                radius: 75,
-                                              ))
-                                          .toList(),
-                                      sectionsSpace: 0,
-                                      centerSpaceRadius: 0,
-                                    ),
-                                  ),
+                                child: MyPieChart(
+                                  genderRespondents: genderRespondents!,
                                 ),
                               ),
                               Container(
@@ -279,13 +264,13 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12.0),
-                    child: Divider(
-                      color: Colors.black,
-                      thickness: 1.0,
-                    ),
-                  ),
+                  // const Padding(
+                  //   padding: EdgeInsets.symmetric(horizontal: 12.0),
+                  //   child: Divider(
+                  //     color: Colors.black,
+                  //     thickness: 1.0,
+                  //   ),
+                  // ),
                   const SizedBox(height: 10),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12.0),
@@ -343,11 +328,18 @@ class _HomepageState extends State<Homepage> {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              trailing: CountryFlag.fromCountryCode(
-                                countryCode,
-                                height: 48,
-                                width: 40,
-                                borderRadius: 8,
+                              trailing: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.black,
+                                    width: 1,
+                                  ),
+                                ),
+                                child: CountryFlag.fromCountryCode(
+                                  countryCode,
+                                  height: 30,
+                                  width: 40,
+                                ),
                               ),
                             ),
                           ),
@@ -356,13 +348,13 @@ class _HomepageState extends State<Homepage> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12.0),
-                    child: Divider(
-                      color: Colors.black,
-                      thickness: 1.0,
-                    ),
-                  ),
+                  // const Padding(
+                  //   padding: EdgeInsets.symmetric(horizontal: 12.0),
+                  //   child: Divider(
+                  //     color: Colors.black,
+                  //     thickness: 1.0,
+                  //   ),
+                  // ),
                   const SizedBox(height: 20),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12.0),

@@ -96,7 +96,7 @@ class _MyBarGraph2State extends State<MyBarGraph2>
                   BarChartRodData(
                     toY: data.y * _animation.value,
                     color: Colors.grey[800],
-                    width: 15,
+                    width: 25,
                     borderRadius: BorderRadius.circular(4),
                     backDrawRodData: BackgroundBarChartRodData(
                       show: true,
