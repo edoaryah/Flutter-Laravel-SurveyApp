@@ -118,6 +118,21 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ),
                   ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Respondent Summary',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   if (genderRespondents != null)
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -164,21 +179,21 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ),
                     ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Rata-Rata Responden',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // const Padding(
+                  //   padding: EdgeInsets.symmetric(horizontal: 12.0),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.start,
+                  //     children: [
+                  //       Text(
+                  //         'Respondent Summary',
+                  //         style: TextStyle(
+                  //           fontSize: 20,
+                  //           fontWeight: FontWeight.w600,
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -197,7 +212,7 @@ class _HomepageState extends State<Homepage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     const Text(
-                                      "Umur",
+                                      "Average",
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600,
@@ -211,7 +226,7 @@ class _HomepageState extends State<Homepage> {
                                       ),
                                     ),
                                     const Text(
-                                      "Tahun",
+                                      "Years Old",
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600,
@@ -234,7 +249,7 @@ class _HomepageState extends State<Homepage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     const Text(
-                                      "Nilai",
+                                      "Average",
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600,
@@ -248,7 +263,7 @@ class _HomepageState extends State<Homepage> {
                                       ),
                                     ),
                                     const Text(
-                                      "IPK / GPA",
+                                      "GPA",
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600,
@@ -278,7 +293,7 @@ class _HomepageState extends State<Homepage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          'Jumlah Responden',
+                          'Nationalities',
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
@@ -362,7 +377,7 @@ class _HomepageState extends State<Homepage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          'Faktor Permasalahan',
+                          'Problem Genres',
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
@@ -412,7 +427,8 @@ class _HomepageState extends State<Homepage> {
                                   ),
                                   subtitle: Row(
                                     children: [
-                                      Text('${item.count.toString()} Responden')
+                                      Text(
+                                          '${item.count.toString()} Respondents')
                                     ],
                                   ),
                                 ),
