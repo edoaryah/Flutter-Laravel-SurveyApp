@@ -87,7 +87,7 @@ class _ListpageState extends State<Listpage> {
                                 });
                               }
                             : null,
-                        child: const Text("Prev Page"),
+                        child: const Text("  <<  "),
                       ),
                       Text("Page $currentPage of $totalPages"),
                       ElevatedButton(
@@ -100,7 +100,7 @@ class _ListpageState extends State<Listpage> {
                                 });
                               }
                             : null,
-                        child: const Text("Next Page"),
+                        child: const Text("  >> "),
                       ),
                     ],
                   ),
