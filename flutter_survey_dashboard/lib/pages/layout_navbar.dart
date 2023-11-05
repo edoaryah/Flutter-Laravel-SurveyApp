@@ -10,10 +10,10 @@ class LayoutNavigationBar extends StatefulWidget {
 }
 
 class _LayoutNavigationBar extends State<LayoutNavigationBar> {
-  int _currentIndex = 1;
+  int _currentIndex = 0;
   final List<Widget> _children = [
-    const Listpage(),
     const Homepage(),
+    const Listpage(),
   ];
 
   @override
@@ -33,14 +33,14 @@ class _LayoutNavigationBar extends State<LayoutNavigationBar> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            backgroundColor: Color.fromARGB(255, 205, 0, 0),
-            label: 'List',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.home),
             backgroundColor: Color.fromARGB(255, 205, 0, 0),
             label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            backgroundColor: Color.fromARGB(255, 205, 0, 0),
+            label: 'List',
           ),
         ],
       ),

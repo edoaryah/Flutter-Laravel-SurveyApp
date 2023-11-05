@@ -133,7 +133,7 @@ class _ListpageState extends State<Listpage> {
                                 const Text(' | '),
                                 Text('${survey.age} y.o.'),
                                 const Text(' | '),
-                                Text('Tingkat ${survey.year}'),
+                                Text('Year ${survey.year}'),
                               ],
                             ),
                             trailing: Container(

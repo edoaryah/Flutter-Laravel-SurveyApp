@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:fl_chart/fl_chart.dart';
 import 'package:country_flags/country_flags.dart';
-// import 'dart:math';
 
 import 'package:flutter_survey_dashboard/services/service.dart';
 import 'package:flutter_survey_dashboard/models/gender.dart';
@@ -118,6 +116,7 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 10),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12.0),
                     child: Row(
@@ -179,21 +178,6 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ),
                     ),
-                  // const Padding(
-                  //   padding: EdgeInsets.symmetric(horizontal: 12.0),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.start,
-                  //     children: [
-                  //       Text(
-                  //         'Respondent Summary',
-                  //         style: TextStyle(
-                  //           fontSize: 20,
-                  //           fontWeight: FontWeight.w600,
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -279,14 +263,6 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  // const Padding(
-                  //   padding: EdgeInsets.symmetric(horizontal: 12.0),
-                  //   child: Divider(
-                  //     color: Colors.black,
-                  //     thickness: 1.0,
-                  //   ),
-                  // ),
-                  const SizedBox(height: 10),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12.0),
                     child: Row(
@@ -362,14 +338,6 @@ class _HomepageState extends State<Homepage> {
                       }).toList(),
                     ],
                   ),
-                  const SizedBox(height: 20),
-                  // const Padding(
-                  //   padding: EdgeInsets.symmetric(horizontal: 12.0),
-                  //   child: Divider(
-                  //     color: Colors.black,
-                  //     thickness: 1.0,
-                  //   ),
-                  // ),
                   const SizedBox(height: 20),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12.0),
