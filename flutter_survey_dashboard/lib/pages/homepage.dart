@@ -73,7 +73,6 @@ class _HomepageState extends State<Homepage> {
     } catch (e) {
       setState(() {
         isLoading = false;
-        // error = e.toString();
       });
     }
   }

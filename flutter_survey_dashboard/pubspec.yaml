@@ -37,9 +37,6 @@ dependencies:
   http: ^1.1.0
   fl_chart: ^0.64.0
   country_flags: ^2.1.0
-  visibility_detector: ^0.4.0+2
-  # country_code_picker: ^3.0.0
-  # dio: ^5.3.3
 
 dev_dependencies:
   flutter_test:
