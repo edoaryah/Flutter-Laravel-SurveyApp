@@ -101,7 +101,6 @@ class _HomepageState extends State<Homepage> {
                               size: 72,
                               color: Colors.white,
                             ),
-                            const SizedBox(height: 16.0),
                             Text(
                               'Total Respondents : ${error ?? total}',
                               style: const TextStyle(
@@ -133,7 +132,7 @@ class _HomepageState extends State<Homepage> {
                   ),
                   if (genderRespondents != null)
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
                       child: Card(
                         shadowColor: Colors.black,
                         elevation: 4.0,
@@ -179,7 +178,8 @@ class _HomepageState extends State<Homepage> {
                     ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 8),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
