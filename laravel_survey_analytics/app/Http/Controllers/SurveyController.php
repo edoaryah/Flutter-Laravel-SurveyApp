@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class SurveyController extends Controller
 {
@@ -63,5 +64,26 @@ class SurveyController extends Controller
             'current_page' => $surveyDetails->currentPage(),
             'last_page' => $surveyDetails->lastPage(),
         ];
+    }
+
+    public function updateSurveyDetails(Request $request, $id)
+    {
+        $survey = DB::table('surveys')->find($id);
+        if ($survey) {
+            DB::table('surveys')
+                ->where('id', $id)
+                ->update([
+                    'Genre' => $request->Genre,
+                    'Reports' => $request->Reports,
+                    'Age' => $request->Age,
+                    'Gpa' => $request->Gpa,
+                    'Year' => $request->Year,
+                    'Gender' => $request->Gender,
+                    'Nationality' => $request->Nationality,
+                ]);
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false], 404);
+        }
     }
 }

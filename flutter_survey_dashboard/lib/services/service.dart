@@ -34,6 +34,39 @@ class HttpSurveyDetails {
   }
 }
 
+class HttpUpdateSurveyDetails {
+  Future<bool> updateSurveyDetails(
+    int id,
+    String genre,
+    String reports,
+    int age,
+    String gpa,
+    int year,
+    String gender,
+    String nationality,
+  ) async {
+    var response = await http.patch(
+      Uri.parse('${Endpoints.getUrlSurveyDetails()}/$id'),
+      body: {
+        'Genre': genre,
+        'Reports': reports,
+        'Age': age.toString(),
+        'Gpa': gpa,
+        'Year': year.toString(),
+        'Gender': gender,
+        'Nationality': nationality,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      var data = json.decode(response.body);
+      return data['success'];
+    } else {
+      throw Exception('Failed to update survey details');
+    }
+  }
+}
+
 class HttpTotalRespondents {
   Future<TotalRespondents> getTotalRespondents() async {
     var response =
