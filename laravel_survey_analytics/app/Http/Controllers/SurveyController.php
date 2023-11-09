@@ -18,6 +18,7 @@ class SurveyController extends Controller
         $genreCounts = DB::table('surveys')
             ->select('Genre', DB::raw('count(*) as count'))
             ->groupBy('Genre')
+            ->orderBy('count', 'desc')
             ->get();
         return $genreCounts;
     }
@@ -31,14 +32,24 @@ class SurveyController extends Controller
         return $genderCounts;
     }
 
+    // public function nationalityRespondents()
+    // {
+    //     $nationalityCounts = DB::table('surveys')
+    //         ->select('Nationality', DB::raw('count(*) as count'))
+    //         ->groupBy('Nationality')
+    //         ->get();
+    //     return $nationalityCounts;
+    // }
     public function nationalityRespondents()
     {
         $nationalityCounts = DB::table('surveys')
             ->select('Nationality', DB::raw('count(*) as count'))
             ->groupBy('Nationality')
+            ->orderBy('count', 'desc')
             ->get();
         return $nationalityCounts;
     }
+
 
     public function averageAge()
     {
@@ -66,24 +77,16 @@ class SurveyController extends Controller
         ];
     }
 
-    public function updateSurveyDetails(Request $request, $id)
+    public function updateRespondent(Request $request, $id)
     {
-        $survey = DB::table('surveys')->find($id);
-        if ($survey) {
-            DB::table('surveys')
-                ->where('id', $id)
-                ->update([
-                    'Genre' => $request->Genre,
-                    'Reports' => $request->Reports,
-                    'Age' => $request->Age,
-                    'Gpa' => $request->Gpa,
-                    'Year' => $request->Year,
-                    'Gender' => $request->Gender,
-                    'Nationality' => $request->Nationality,
-                ]);
-            return response()->json(['success' => true]);
-        } else {
-            return response()->json(['success' => false], 404);
+        $respondent = DB::table('surveys')->where('id', $id)->first();
+
+        if (!$respondent) {
+            return response()->json(['message' => 'Respondent not found'], 404);
         }
+
+        DB::table('surveys')->where('id', $id)->update($request->all());
+
+        return response()->json(['message' => 'Respondent updated successfully']);
     }
 }

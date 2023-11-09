@@ -31,26 +31,4 @@ class SurveyDetails {
       nationality: parsedJson['Nationality'] as String,
     );
   }
-
-  SurveyDetails copyWith({
-    int? id,
-    String? genre,
-    String? reports,
-    int? age,
-    String? gpa,
-    int? year,
-    String? gender,
-    String? nationality,
-  }) {
-    return SurveyDetails(
-      id: id ?? this.id,
-      genre: genre ?? this.genre,
-      reports: reports ?? this.reports,
-      age: age ?? this.age,
-      gpa: gpa ?? this.gpa,
-      year: year ?? this.year,
-      gender: gender ?? this.gender,
-      nationality: nationality ?? this.nationality,
-    );
-  }
 }

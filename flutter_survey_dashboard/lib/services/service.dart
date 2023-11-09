@@ -32,37 +32,15 @@ class HttpSurveyDetails {
       throw Exception('Failed to load survey details');
     }
   }
-}
 
-class HttpUpdateSurveyDetails {
-  Future<bool> updateSurveyDetails(
-    int id,
-    String genre,
-    String reports,
-    int age,
-    String gpa,
-    int year,
-    String gender,
-    String nationality,
-  ) async {
-    var response = await http.patch(
-      Uri.parse('${Endpoints.getUrlSurveyDetails()}/$id'),
-      body: {
-        'Genre': genre,
-        'Reports': reports,
-        'Age': age.toString(),
-        'Gpa': gpa,
-        'Year': year.toString(),
-        'Gender': gender,
-        'Nationality': nationality,
-      },
+  Future<void> updateRespondent(int id, Map<String, String> updatedData) async {
+    final response = await http.put(
+      Uri.parse('${Endpoints.urlDomain}api/respondent/$id'),
+      body: updatedData,
     );
 
-    if (response.statusCode == 200) {
-      var data = json.decode(response.body);
-      return data['success'];
-    } else {
-      throw Exception('Failed to update survey details');
+    if (response.statusCode != 200) {
+      throw Exception('Failed to update respondent');
     }
   }
 }
