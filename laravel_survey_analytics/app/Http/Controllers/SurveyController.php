@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class SurveyController extends Controller
 {
@@ -17,6 +18,7 @@ class SurveyController extends Controller
         $genreCounts = DB::table('surveys')
             ->select('Genre', DB::raw('count(*) as count'))
             ->groupBy('Genre')
+            ->orderBy('count', 'desc')
             ->get();
         return $genreCounts;
     }
@@ -26,6 +28,7 @@ class SurveyController extends Controller
         $genderCounts = DB::table('surveys')
             ->select('Gender', DB::raw('count(*) as count'))
             ->groupBy('Gender')
+            ->orderBy('count', 'desc')
             ->get();
         return $genderCounts;
     }
@@ -35,9 +38,11 @@ class SurveyController extends Controller
         $nationalityCounts = DB::table('surveys')
             ->select('Nationality', DB::raw('count(*) as count'))
             ->groupBy('Nationality')
+            ->orderBy('count', 'desc')
             ->get();
         return $nationalityCounts;
     }
+
 
     public function averageAge()
     {
@@ -63,5 +68,31 @@ class SurveyController extends Controller
             'current_page' => $surveyDetails->currentPage(),
             'last_page' => $surveyDetails->lastPage(),
         ];
+    }
+
+    public function updateRespondent(Request $request, $id)
+    {
+        $respondent = DB::table('surveys')->where('id', $id)->first();
+
+        if (!$respondent) {
+            return response()->json(['message' => 'Respondent not found'], 404);
+        }
+
+        DB::table('surveys')->where('id', $id)->update($request->all());
+
+        return response()->json(['message' => 'Respondent updated successfully']);
+    }
+
+    public function deleteRespondent($id)
+    {
+        $respondent = DB::table('surveys')->where('id', $id)->first();
+
+        if (!$respondent) {
+            return response()->json(['message' => 'Respondent not found'], 404);
+        }
+
+        DB::table('surveys')->where('id', $id)->delete();
+
+        return response()->json(['message' => 'Respondent deleted successfully']);
     }
 }

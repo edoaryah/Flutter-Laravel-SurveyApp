@@ -32,6 +32,27 @@ class HttpSurveyDetails {
       throw Exception('Failed to load survey details');
     }
   }
+
+  Future<void> updateRespondent(int id, Map<String, String> updatedData) async {
+    final response = await http.put(
+      Uri.parse('${Endpoints.urlDomain}api/respondent/$id'),
+      body: updatedData,
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to update respondent');
+    }
+  }
+
+  Future<void> deleteRespondent(int id) async {
+    final response = await http.delete(
+      Uri.parse('${Endpoints.urlDomain}api/respondent/$id'),
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to delete respondent');
+    }
+  }
 }
 
 class HttpTotalRespondents {

@@ -132,22 +132,22 @@ Widget getBottomTitles(double value, TitleMeta meta) {
   Widget text;
   switch (value.toInt()) {
     case 0:
-      text = const Text('ID', style: style);
+      text = const Text('1', style: style);
       break;
     case 1:
-      text = const Text('SD', style: style);
+      text = const Text('2', style: style);
       break;
     case 2:
-      text = const Text('FR', style: style);
+      text = const Text('3', style: style);
       break;
     case 3:
-      text = const Text('MX', style: style);
+      text = const Text('4', style: style);
       break;
     case 4:
-      text = const Text('ZA', style: style);
+      text = const Text('5', style: style);
       break;
     case 5:
-      text = const Text('YE', style: style);
+      text = const Text('6', style: style);
       break;
     default:
       text = const Text('', style: style);
