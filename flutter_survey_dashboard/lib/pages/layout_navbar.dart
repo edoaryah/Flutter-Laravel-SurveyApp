@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_dashboard/pages/homepage.dart';
 import 'package:flutter_survey_dashboard/pages/listpage.dart';
+import 'package:flutter_survey_dashboard/pages/form.dart';
 
 class LayoutNavigationBar extends StatefulWidget {
   const LayoutNavigationBar({super.key});
@@ -12,15 +13,22 @@ class LayoutNavigationBar extends StatefulWidget {
 class _LayoutNavigationBar extends State<LayoutNavigationBar> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    const Homepage(),
     const Listpage(),
+    const Homepage(),
+    FormPage(),
+  ];
+
+  final List<String> _titles = [
+    'List Survey',
+    'Dashboard',
+    'Add Response',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        title: Text(_titles[_currentIndex]),
         backgroundColor: const Color.fromARGB(255, 205, 0, 0),
       ),
       body: _children[_currentIndex],
@@ -33,14 +41,19 @@ class _LayoutNavigationBar extends State<LayoutNavigationBar> {
         },
         items: const [
           BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            backgroundColor: Color.fromARGB(255, 205, 0, 0),
+            label: 'List',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.home),
             backgroundColor: Color.fromARGB(255, 205, 0, 0),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
+            icon: Icon(Icons.format_list_bulleted_add),
             backgroundColor: Color.fromARGB(255, 205, 0, 0),
-            label: 'List',
+            label: 'Add Survey',
           ),
         ],
       ),
