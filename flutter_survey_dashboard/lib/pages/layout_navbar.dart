@@ -11,7 +11,7 @@ class LayoutNavigationBar extends StatefulWidget {
 }
 
 class _LayoutNavigationBar extends State<LayoutNavigationBar> {
-  int _currentIndex = 0;
+  int _currentIndex = 1;
   final List<Widget> _children = [
     const Listpage(),
     const Homepage(),

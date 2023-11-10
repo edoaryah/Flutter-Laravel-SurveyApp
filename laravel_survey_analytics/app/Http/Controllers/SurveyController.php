@@ -95,4 +95,15 @@ class SurveyController extends Controller
 
         return response()->json(['message' => 'Respondent deleted successfully']);
     }
+
+    public function createRespondent(Request $request)
+    {
+        $respondent = DB::table('surveys')->insertGetId($request->all());
+
+        if (!$respondent) {
+            return response()->json(['message' => 'Failed to create respondent'], 500);
+        }
+
+        return response()->json(['message' => 'Respondent created successfully', 'id' => $respondent]);
+    }
 }

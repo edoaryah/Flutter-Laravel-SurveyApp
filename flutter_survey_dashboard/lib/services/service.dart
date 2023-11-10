@@ -53,6 +53,17 @@ class HttpSurveyDetails {
       throw Exception('Failed to delete respondent');
     }
   }
+
+  Future<void> createRespondent(Map<String, String> respondentData) async {
+    final response = await http.post(
+      Uri.parse('${Endpoints.urlDomain}api/respondent'),
+      body: respondentData,
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to create respondent');
+    }
+  }
 }
 
 class HttpTotalRespondents {

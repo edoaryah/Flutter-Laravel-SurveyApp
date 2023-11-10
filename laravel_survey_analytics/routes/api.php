@@ -28,3 +28,4 @@ Route::get('/average-gpa', [SurveyController::class, 'averageGpa']);
 Route::get('/survey-details', [SurveyController::class, 'surveyDetails']);
 Route::put('/respondent/{id}', [SurveyController::class, 'updateRespondent']);
 Route::delete('/respondent/{id}', [SurveyController::class, 'deleteRespondent']);
+Route::post('/respondent', [SurveyController::class, 'createRespondent']);
