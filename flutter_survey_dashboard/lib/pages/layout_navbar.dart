@@ -15,7 +15,7 @@ class _LayoutNavigationBar extends State<LayoutNavigationBar> {
   final List<Widget> _children = [
     const Listpage(),
     const Homepage(),
-    FormPage(),
+    const FormPage(),
   ];
 
   final List<String> _titles = [

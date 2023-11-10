@@ -167,8 +167,8 @@ class _ListpageState extends State<Listpage> {
                               // Tampilkan pesan kesalahan jika gagal menghapus responden
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                    content:
-                                        Text('Failed to delete respondent')),
+                                  content: Text('Failed to delete respondent'),
+                                ),
                               );
                             }
                           },
@@ -176,8 +176,10 @@ class _ListpageState extends State<Listpage> {
                             alignment: Alignment.centerRight,
                             padding: const EdgeInsets.only(right: 20.0),
                             color: Colors.red,
-                            child:
-                                const Icon(Icons.delete, color: Colors.white),
+                            child: const Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
                           ),
                           child: Card(
                             color: Colors.white,
@@ -193,7 +195,7 @@ class _ListpageState extends State<Listpage> {
                               title: Text(
                                 "Respondent ID : ${survey.id}",
                                 style: const TextStyle(
-                                  fontSize: 20.0,
+                                  fontSize: 18.0,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),

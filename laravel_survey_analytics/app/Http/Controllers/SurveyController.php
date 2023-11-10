@@ -73,37 +73,29 @@ class SurveyController extends Controller
     public function updateRespondent(Request $request, $id)
     {
         $respondent = DB::table('surveys')->where('id', $id)->first();
-
         if (!$respondent) {
             return response()->json(['message' => 'Respondent not found'], 404);
         }
-
         DB::table('surveys')->where('id', $id)->update($request->all());
-
         return response()->json(['message' => 'Respondent updated successfully']);
     }
 
     public function deleteRespondent($id)
     {
         $respondent = DB::table('surveys')->where('id', $id)->first();
-
         if (!$respondent) {
             return response()->json(['message' => 'Respondent not found'], 404);
         }
-
         DB::table('surveys')->where('id', $id)->delete();
-
         return response()->json(['message' => 'Respondent deleted successfully']);
     }
 
     public function createRespondent(Request $request)
     {
         $respondent = DB::table('surveys')->insertGetId($request->all());
-
         if (!$respondent) {
             return response()->json(['message' => 'Failed to create respondent'], 500);
         }
-
         return response()->json(['message' => 'Respondent created successfully', 'id' => $respondent]);
     }
 }
