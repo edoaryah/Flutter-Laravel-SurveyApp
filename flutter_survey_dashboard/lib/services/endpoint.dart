@@ -1,5 +1,5 @@
 class Endpoints {
-  static const String urlDomain = 'http://192.168.1.20:8000/';
+  static const String urlDomain = 'http://192.168.1.2:8080/';
 
   static const String totalRespondents = 'api/total-respondents';
   static const String respondentsByGender = 'api/respondents-by-gender';
