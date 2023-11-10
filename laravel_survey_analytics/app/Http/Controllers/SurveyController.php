@@ -43,7 +43,6 @@ class SurveyController extends Controller
         return $nationalityCounts;
     }
 
-
     public function averageAge()
     {
         $averageAge = DB::table('surveys')->avg('Age');
