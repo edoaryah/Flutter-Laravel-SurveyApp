@@ -369,30 +369,31 @@ class _ListpageState extends State<Listpage> {
                   //               ],
                   //             ),
                   //           ),
-                  // onTap: () {
-                  //   showDialog(
-                  //     context: context,
-                  //     builder: (BuildContext context) {
-                  //       return AlertDialog(
-                  //         title: Text('Genre: ${survey.genre}'),
-                  //         content: Text('Reports: ${survey.reports}'),
-                  //         actions: <Widget>[
-                  //           TextButton(
-                  //             child: const Text('Close'),
-                  //             onPressed: () {
-                  //               Navigator.of(context).pop();
-                  //             },
-                  //           ),
-                  //         ],
-                  //       );
-                  //     },
-                  //   );
-                  // },
+                  //           onTap: () {
+                  //             showDialog(
+                  //               context: context,
+                  //               builder: (BuildContext context) {
+                  //                 return AlertDialog(
+                  //                   title: Text('Genre: ${survey.genre}'),
+                  //                   content: Text('Reports: ${survey.reports}'),
+                  //                   actions: <Widget>[
+                  //                     TextButton(
+                  //                       child: const Text('Close'),
+                  //                       onPressed: () {
+                  //                         Navigator.of(context).pop();
+                  //                       },
+                  //                     ),
+                  //                   ],
+                  //                 );
+                  //               },
+                  //             );
+                  //           },
                   //         ),
                   //       );
                   //     },
                   //   ),
                   // ),
+                  //-------------------------------------
                   Expanded(
                     child: ListView.builder(
                       itemCount: surveyDetails.length,
@@ -621,6 +622,26 @@ class _ListpageState extends State<Listpage> {
                                   ],
                                 ),
                               ),
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Genre: ${survey.genre}'),
+                                      content:
+                                          Text('Reports: ${survey.reports}'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          child: const Text('Close'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
                             ),
                           ),
                         );
