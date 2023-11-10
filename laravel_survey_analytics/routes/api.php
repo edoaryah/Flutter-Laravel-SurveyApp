@@ -26,5 +26,5 @@ Route::get('/respondents-by-nationality', [SurveyController::class, 'nationality
 Route::get('/average-age', [SurveyController::class, 'averageAge']);
 Route::get('/average-gpa', [SurveyController::class, 'averageGpa']);
 Route::get('/survey-details', [SurveyController::class, 'surveyDetails']);
-
 Route::put('/respondent/{id}', [SurveyController::class, 'updateRespondent']);
+Route::delete('/respondent/{id}', [SurveyController::class, 'deleteRespondent']);

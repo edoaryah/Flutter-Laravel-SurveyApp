@@ -43,6 +43,16 @@ class HttpSurveyDetails {
       throw Exception('Failed to update respondent');
     }
   }
+
+  Future<void> deleteRespondent(int id) async {
+    final response = await http.delete(
+      Uri.parse('${Endpoints.urlDomain}api/respondent/$id'),
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to delete respondent');
+    }
+  }
 }
 
 class HttpTotalRespondents {

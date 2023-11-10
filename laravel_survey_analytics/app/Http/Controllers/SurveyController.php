@@ -28,18 +28,11 @@ class SurveyController extends Controller
         $genderCounts = DB::table('surveys')
             ->select('Gender', DB::raw('count(*) as count'))
             ->groupBy('Gender')
+            ->orderBy('count', 'desc')
             ->get();
         return $genderCounts;
     }
 
-    // public function nationalityRespondents()
-    // {
-    //     $nationalityCounts = DB::table('surveys')
-    //         ->select('Nationality', DB::raw('count(*) as count'))
-    //         ->groupBy('Nationality')
-    //         ->get();
-    //     return $nationalityCounts;
-    // }
     public function nationalityRespondents()
     {
         $nationalityCounts = DB::table('surveys')
@@ -88,5 +81,18 @@ class SurveyController extends Controller
         DB::table('surveys')->where('id', $id)->update($request->all());
 
         return response()->json(['message' => 'Respondent updated successfully']);
+    }
+
+    public function deleteRespondent($id)
+    {
+        $respondent = DB::table('surveys')->where('id', $id)->first();
+
+        if (!$respondent) {
+            return response()->json(['message' => 'Respondent not found'], 404);
+        }
+
+        DB::table('surveys')->where('id', $id)->delete();
+
+        return response()->json(['message' => 'Respondent deleted successfully']);
     }
 }
