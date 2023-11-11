@@ -37,6 +37,7 @@ dependencies:
   http: ^1.1.0
   fl_chart: ^0.64.0
   country_flags: ^2.1.0
+  overlay_support: ^2.1.0
 
 dev_dependencies:
   flutter_test:

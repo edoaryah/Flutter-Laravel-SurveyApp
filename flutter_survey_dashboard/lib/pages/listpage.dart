@@ -38,6 +38,7 @@ class _ListpageState extends State<Listpage> {
   final nationalityController = TextEditingController();
   final genreController = TextEditingController();
   final genderController = TextEditingController();
+  final yearController = TextEditingController();
 
   @override
   void initState() {
@@ -107,85 +108,304 @@ class _ListpageState extends State<Listpage> {
     }
   }
 
+  // void showEditForm(SurveyDetails survey) {
+  //   showModalBottomSheet(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return Container(
+  //         padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+  //         child: Form(
+  //           key: _formKey,
+  //           child: ListView(
+  //             children: <Widget>[
+  //               MyDropdown(
+  //                 items: genres,
+  //                 label: 'Genre',
+  //                 onChanged: (String? value) {
+  //                   genreController.text = value!;
+  //                 },
+  //                 initialValue: survey.genre,
+  //               ),
+  //               const SizedBox(height: 10),
+  //               MyTextField(
+  //                 label: 'Reports',
+  //                 keyboardType: TextInputType.text,
+  //                 onSaved: (String? value) {
+  //                   reportsController.text = value!;
+  //                 },
+  //                 initialValue: survey.reports,
+  //               ),
+  //               const SizedBox(height: 10),
+  //               Row(
+  //                 children: [
+  //                   Expanded(
+  //                     child: MyTextField(
+  //                       label: 'GPA',
+  //                       keyboardType: TextInputType.number,
+  //                       onSaved: (String? value) {
+  //                         gpaController.text = value!;
+  //                       },
+  //                       initialValue: survey.gpa.toString(),
+  //                     ),
+  //                   ),
+  //                   const SizedBox(width: 10),
+  //                   Expanded(
+  //                     child: MyTextField(
+  //                       label: 'Year',
+  //                       keyboardType: TextInputType.number,
+  //                       onSaved: (String? value) {
+  //                         yearController.text = value!;
+  //                       },
+  //                       initialValue: survey.year.toString(),
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //               const SizedBox(height: 10),
+  //               Row(
+  //                 children: [
+  //                   Expanded(
+  //                     child: MyTextField(
+  //                       label: 'Age',
+  //                       keyboardType: TextInputType.number,
+  //                       onSaved: (String? value) {
+  //                         ageController.text = value!;
+  //                       },
+  //                       initialValue: survey.age.toString(),
+  //                     ),
+  //                   ),
+  //                   const SizedBox(width: 10),
+  //                   Expanded(
+  //                     child: MyDropdown(
+  //                       items: genders,
+  //                       label: 'Gender',
+  //                       onChanged: (String? value) {
+  //                         genderController.text = value!;
+  //                       },
+  //                       displayText: (String gender) {
+  //                         String displayText = gender;
+  //                         if (gender == 'M') {
+  //                           displayText = 'Male';
+  //                         } else if (gender == 'F') {
+  //                           displayText = 'Female';
+  //                         }
+  //                         return displayText;
+  //                       },
+  //                       initialValue: survey.gender,
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //               const SizedBox(height: 10),
+  //               MyDropdown(
+  //                 items: nationalities,
+  //                 label: 'Nationality',
+  //                 onChanged: (String? value) {
+  //                   nationalityController.text = value!;
+  //                 },
+  //                 initialValue: survey.nationality,
+  //               ),
+  //               const SizedBox(height: 30),
+  //               ElevatedButton(
+  //                 child: const Text('Cancel'),
+  //                 onPressed: () {
+  //                   Navigator.of(context).pop();
+  //                 },
+  //               ),
+  //               ElevatedButton(
+  //                 child: const Text('Save'),
+  //                 onPressed: () {
+  //                   if (_formKey.currentState!.validate()) {
+  //                     _formKey.currentState!.save();
+
+  //                     final localContext = context;
+  //                     try {
+  //                       service1
+  //                           .updateRespondent(
+  //                             survey.id,
+  //                             {
+  //                               'Reports': reportsController.text,
+  //                               'Age': ageController.text,
+  //                               'Gpa': gpaController.text,
+  //                               'Genre': genreController.text,
+  //                               'Nationality': nationalityController.text,
+  //                               'Gender': genderController.text,
+  //                               'Year': yearController.text,
+  //                             },
+  //                           )
+  //                           .then((_) => fetchSurveyDetails(currentPage))
+  //                           .then((_) => Navigator.of(localContext).pop())
+  //                           .catchError((e) {
+  //                             // Handle the error
+  //                           });
+  //                     } catch (e) {
+  //                       // Handle the error
+  //                     }
+  //                   }
+  //                 },
+  //               ),
+  //               const SizedBox(height: 30),
+  //             ],
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
+
+  //---------------------------------------------------------------------------
   void showEditForm(SurveyDetails survey) {
+    OverlayEntry? overlayEntry;
+
     showModalBottomSheet(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(20.0),
+          topLeft: Radius.circular(20.0),
+        ),
+      ),
       context: context,
+      isScrollControlled: true,
       builder: (BuildContext context) {
-        return Container(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: ListView(
-              children: <Widget>[
-                MyTextField(
-                  label: 'Reports',
-                  keyboardType: TextInputType.text,
-                  onSaved: (String? value) {
-                    reportsController.text = value!;
-                  },
-                  initialValue: survey.reports,
-                ),
-                MyTextField(
-                  label: 'Age',
-                  keyboardType: TextInputType.number,
-                  onSaved: (String? value) {
-                    ageController.text = value!;
-                  },
-                  initialValue: survey.age.toString(),
-                ),
-                MyTextField(
-                  label: 'GPA',
-                  keyboardType: TextInputType.number,
-                  onSaved: (String? value) {
-                    gpaController.text = value!;
-                  },
-                  initialValue: survey.gpa.toString(),
-                ),
-                MyDropdown(
-                  items: genres,
-                  label: 'Genre',
-                  onChanged: (String? value) {
-                    genreController.text = value!;
-                  },
-                  initialValue: survey.genre,
-                ),
-                MyDropdown(
-                  items: nationalities,
-                  label: 'Nationality',
-                  onChanged: (String? value) {
-                    nationalityController.text = value!;
-                  },
-                  initialValue: survey.nationality,
-                ),
-                MyDropdown(
-                  items: genders,
-                  label: 'Gender',
-                  onChanged: (String? value) {
-                    genderController.text = value!;
-                  },
-                  displayText: (String gender) {
-                    String displayText = gender;
-                    if (gender == 'M') {
-                      displayText = 'Male';
-                    } else if (gender == 'F') {
-                      displayText = 'Female';
-                    }
-                    return displayText;
-                  },
-                  initialValue: survey.gender,
-                ),
-                ElevatedButton(
-                  child: const Text('Cancel'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-                ElevatedButton(
-                  child: const Text('Save'),
+        double height = MediaQuery.of(context).size.height;
+        return SafeArea(
+          child: SizedBox(
+            height: height * 0.75,
+            child: Form(
+              key: _formKey,
+              child: ListView(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 15),
+                        MyDropdown(
+                          items: genres,
+                          label: 'Genre',
+                          onChanged: (String? value) {
+                            genreController.text = value!;
+                          },
+                          initialValue: survey.genre,
+                        ),
+                        const SizedBox(height: 10),
+                        MyTextField(
+                          label: 'Reports',
+                          keyboardType: TextInputType.text,
+                          onSaved: (String? value) {
+                            reportsController.text = value!;
+                          },
+                          initialValue: survey.reports,
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: MyTextField(
+                                label: 'GPA',
+                                keyboardType: TextInputType.number,
+                                onSaved: (String? value) {
+                                  gpaController.text = value!;
+                                },
+                                initialValue: survey.gpa.toString(),
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: MyTextField(
+                                label: 'Year',
+                                keyboardType: TextInputType.number,
+                                onSaved: (String? value) {
+                                  yearController.text = value!;
+                                },
+                                initialValue: survey.year.toString(),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: MyTextField(
+                                label: 'Age',
+                                keyboardType: TextInputType.number,
+                                onSaved: (String? value) {
+                                  ageController.text = value!;
+                                },
+                                initialValue: survey.age.toString(),
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: MyDropdown(
+                                items: genders,
+                                label: 'Gender',
+                                onChanged: (String? value) {
+                                  genderController.text = value!;
+                                },
+                                displayText: (String gender) {
+                                  String displayText = gender;
+                                  if (gender == 'M') {
+                                    displayText = 'Male';
+                                  } else if (gender == 'F') {
+                                    displayText = 'Female';
+                                  }
+                                  return displayText;
+                                },
+                                initialValue: survey.gender,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        MyDropdown(
+                          items: nationalities,
+                          label: 'Nationality',
+                          onChanged: (String? value) {
+                            nationalityController.text = value!;
+                          },
+                          initialValue: survey.nationality,
+                        ),
+                        const SizedBox(height: 100),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    ).whenComplete(() {
+      overlayEntry?.remove();
+      overlayEntry = null;
+    });
+
+    Future.delayed(Duration.zero, () {
+      overlayEntry = OverlayEntry(
+        builder: (context) {
+          // var orientation = MediaQuery.of(context).orientation;
+          return Positioned(
+            right: 10.0,
+            // top: orientation == Orientation.portrait ? 130.0 : 30.0,
+            top: 130,
+            child: Row(
+              children: [
+                // FloatingActionButton(
+                //   backgroundColor: const Color.fromARGB(255, 205, 0, 0),
+                //   child: const Icon(Icons.cancel),
+                //   onPressed: () {
+                //     Navigator.of(context).pop();
+                //     overlayEntry?.remove();
+                //   },
+                // ),
+                // const SizedBox(width: 8),
+                FloatingActionButton(
+                  child: const Icon(Icons.save),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
-
                       final localContext = context;
                       try {
                         service1
@@ -198,10 +418,14 @@ class _ListpageState extends State<Listpage> {
                                 'Genre': genreController.text,
                                 'Nationality': nationalityController.text,
                                 'Gender': genderController.text,
+                                'Year': yearController.text,
                               },
                             )
                             .then((_) => fetchSurveyDetails(currentPage))
-                            .then((_) => Navigator.of(localContext).pop())
+                            .then((_) {
+                              Navigator.of(localContext).pop();
+                              overlayEntry?.remove();
+                            })
                             .catchError((e) {
                               // Handle the error
                             });
@@ -211,12 +435,22 @@ class _ListpageState extends State<Listpage> {
                     }
                   },
                 ),
+                const SizedBox(width: 8),
+                FloatingActionButton(
+                  backgroundColor: const Color.fromARGB(255, 205, 0, 0),
+                  child: const Icon(Icons.cancel),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    overlayEntry?.remove();
+                  },
+                ),
               ],
             ),
-          ),
-        );
-      },
-    );
+          );
+        },
+      );
+      Overlay.of(context).insert(overlayEntry!);
+    });
   }
 
   @override
@@ -230,36 +464,61 @@ class _ListpageState extends State<Listpage> {
               )
             : Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        onPressed: currentPage > 1
-                            ? () {
-                                setState(() {
-                                  currentPage--;
-                                  fetchSurveyDetails(currentPage);
-                                  isLoading = true;
-                                });
-                              }
-                            : null,
-                        child: const Text("  <<  "),
-                      ),
-                      Text("Page $currentPage of $totalPages"),
-                      ElevatedButton(
-                        onPressed: currentPage < totalPages
-                            ? () {
-                                setState(() {
-                                  currentPage++;
-                                  fetchSurveyDetails(currentPage);
-                                  isLoading = true;
-                                });
-                              }
-                            : null,
-                        child: const Text("  >> "),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //   children: [
+                  //     ElevatedButton(
+                  //       onPressed: currentPage > 1
+                  //           ? () {
+                  //               setState(() {
+                  //                 currentPage--;
+                  //                 fetchSurveyDetails(currentPage);
+                  //                 isLoading = true;
+                  //               });
+                  //             }
+                  //           : null,
+                  //       child: const Text("  <<  "),
+                  //     ),
+                  //     Text("Page $currentPage of $totalPages"),
+                  //     ElevatedButton(
+                  //       onPressed: currentPage < totalPages
+                  //           ? () {
+                  //               setState(() {
+                  //                 currentPage++;
+                  //                 fetchSurveyDetails(currentPage);
+                  //                 isLoading = true;
+                  //               });
+                  //             }
+                  //           : null,
+                  //       child: const Text("  >> "),
+                  //     ),
+                  //     InkWell(
+                  //       onTap: currentPage > 1
+                  //           ? () {
+                  //               setState(() {
+                  //                 currentPage--;
+                  //                 fetchSurveyDetails(currentPage);
+                  //                 isLoading = true;
+                  //               });
+                  //             }
+                  //           : null,
+                  //       child: const Text("<<", style: TextStyle(fontSize: 24)),
+                  //     ),
+                  //     Text("Page $currentPage of $totalPages"),
+                  //     InkWell(
+                  //       onTap: currentPage < totalPages
+                  //           ? () {
+                  //               setState(() {
+                  //                 currentPage++;
+                  //                 fetchSurveyDetails(currentPage);
+                  //                 isLoading = true;
+                  //               });
+                  //             }
+                  //           : null,
+                  //       child: const Text(">>", style: TextStyle(fontSize: 24)),
+                  //     ),
+                  //   ],
+                  // ),
                   Expanded(
                     child: ListView.builder(
                       itemCount: surveyDetails.length,
@@ -295,9 +554,9 @@ class _ListpageState extends State<Listpage> {
                             color: Colors.white,
                             elevation: 2.0,
                             child: ListTile(
-                              leading: const CircleAvatar(
-                                backgroundColor: Colors.blue,
-                                child: Icon(
+                              leading: CircleAvatar(
+                                backgroundColor: Colors.grey[600],
+                                child: const Icon(
                                   Icons.person,
                                   color: Colors.white,
                                 ),
@@ -381,6 +640,79 @@ class _ListpageState extends State<Listpage> {
                           ),
                         );
                       },
+                    ),
+                  ),
+                  Container(
+                    height: 35,
+                    color: Colors.grey[700],
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        // ElevatedButton(
+                        //   onPressed: currentPage > 1
+                        //       ? () {
+                        //           setState(() {
+                        //             currentPage--;
+                        //             fetchSurveyDetails(currentPage);
+                        //             isLoading = true;
+                        //           });
+                        //         }
+                        //       : null,
+                        //   child: const Text("  <<  "),
+                        // ),
+                        // Text("Page $currentPage of $totalPages"),
+                        // ElevatedButton(
+                        //   onPressed: currentPage < totalPages
+                        //       ? () {
+                        //           setState(() {
+                        //             currentPage++;
+                        //             fetchSurveyDetails(currentPage);
+                        //             isLoading = true;
+                        //           });
+                        //         }
+                        //       : null,
+                        //   child: const Text("  >> "),
+                        // ),
+                        InkWell(
+                          onTap: currentPage > 1
+                              ? () {
+                                  setState(() {
+                                    currentPage--;
+                                    fetchSurveyDetails(currentPage);
+                                    isLoading = true;
+                                  });
+                                }
+                              : null,
+                          child: const Text("<<",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                        Text(
+                          "Page $currentPage of $totalPages",
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13),
+                        ),
+                        InkWell(
+                          onTap: currentPage < totalPages
+                              ? () {
+                                  setState(() {
+                                    currentPage++;
+                                    fetchSurveyDetails(currentPage);
+                                    isLoading = true;
+                                  });
+                                }
+                              : null,
+                          child: const Text(">>",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      ],
                     ),
                   ),
                 ],

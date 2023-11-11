@@ -33,6 +33,7 @@ class _LayoutNavigationBar extends State<LayoutNavigationBar> {
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.shifting,
         currentIndex: _currentIndex,
         onTap: (int index) {
           setState(() {
