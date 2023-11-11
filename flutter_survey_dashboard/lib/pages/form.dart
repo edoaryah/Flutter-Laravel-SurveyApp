@@ -182,15 +182,15 @@ class _FormPageState extends State<FormPage> {
                             child: MyTextField(
                               label: 'Report',
                               keyboardType: TextInputType.multiline,
-                              maxLines: null,
+                              maxLines: 4,
                               onSaved: (String? value) {
                                 reports = value!;
                               },
                             ),
                           ),
-                          const SizedBox(height: 15),
-                          ElevatedButton(
-                            onPressed: () async {
+                          const SizedBox(height: 30),
+                          GestureDetector(
+                            onTap: () async {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
 
@@ -213,9 +213,9 @@ class _FormPageState extends State<FormPage> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-                                        title: const Text('Success'),
+                                        title: const Text('Thanks!'),
                                         content: const Text(
-                                            'Response has been successfully submitted.'),
+                                            'Your response has been successfully submitted.'),
                                         actions: <Widget>[
                                           TextButton(
                                             child: const Text('OK'),
@@ -251,8 +251,26 @@ class _FormPageState extends State<FormPage> {
                                 }
                               }
                             },
-                            child: const Text('Submit'),
-                          ),
+                            child: Container(
+                              padding: const EdgeInsets.all(20),
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 25),
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  'Submit',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     ),

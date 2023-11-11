@@ -18,31 +18,17 @@ class MyTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 3),
-          child: Text(
-            label,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
+    return TextFormField(
+      maxLines: maxLines,
+      keyboardType: keyboardType,
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(4),
         ),
-        TextFormField(
-          maxLines: maxLines,
-          keyboardType: keyboardType,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
-            ),
-          ),
-          onSaved: onSaved,
-          initialValue: initialValue,
-        ),
-      ],
+      ),
+      onSaved: onSaved,
+      initialValue: initialValue,
     );
   }
 }

@@ -159,8 +159,8 @@ class _HomepageState extends State<Homepage> {
                                                 width: 16,
                                                 height: 16,
                                                 color: item.gender == 'M'
-                                                    ? const Color(0xff0293ee)
-                                                    : const Color(0xfff8b250),
+                                                    ? Colors.blueAccent
+                                                    : Colors.pinkAccent,
                                               ),
                                               const SizedBox(width: 8),
                                               Text(

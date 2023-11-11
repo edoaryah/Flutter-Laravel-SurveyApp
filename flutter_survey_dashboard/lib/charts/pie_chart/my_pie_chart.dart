@@ -106,9 +106,7 @@ class _MyPieChartState extends State<MyPieChart> {
 
       final item = widget.genderRespondents[i];
       return PieChartSectionData(
-        color: item.gender == 'M'
-            ? const Color(0xff0293ee)
-            : const Color(0xfff8b250),
+        color: item.gender == 'M' ? Colors.blueAccent : Colors.pinkAccent,
         value: item.count.toDouble(),
         title:
             '${((item.count.toDouble()) / (widget.genderRespondents.fold(0, (previousValue, element) => previousValue + element.count)) * 100).toStringAsFixed(2)}%',

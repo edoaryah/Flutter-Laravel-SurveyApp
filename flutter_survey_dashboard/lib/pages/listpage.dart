@@ -276,10 +276,10 @@ class _ListpageState extends State<Listpage> {
               child: ListView(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(25.0),
                     child: Column(
                       children: [
-                        const SizedBox(height: 15),
+                        const SizedBox(height: 10),
                         MyDropdown(
                           items: genres,
                           label: 'Genre',
@@ -288,7 +288,7 @@ class _ListpageState extends State<Listpage> {
                           },
                           initialValue: survey.genre,
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 15),
                         MyTextField(
                           label: 'Reports',
                           keyboardType: TextInputType.text,
@@ -297,7 +297,7 @@ class _ListpageState extends State<Listpage> {
                           },
                           initialValue: survey.reports,
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 15),
                         Row(
                           children: [
                             Expanded(
@@ -323,7 +323,7 @@ class _ListpageState extends State<Listpage> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 15),
                         Row(
                           children: [
                             Expanded(
@@ -358,7 +358,7 @@ class _ListpageState extends State<Listpage> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 15),
                         MyDropdown(
                           items: nationalities,
                           label: 'Nationality',
@@ -581,6 +581,7 @@ class _ListpageState extends State<Listpage> {
                               trailing: SizedBox(
                                 width: 100,
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     IconButton(
                                       icon: const Icon(Icons.edit),
@@ -598,19 +599,32 @@ class _ListpageState extends State<Listpage> {
                                         showEditForm(survey);
                                       },
                                     ),
-                                    Expanded(
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: Colors.black,
-                                            width: 1,
-                                          ),
+                                    // Expanded(
+                                    //   child: Container(
+                                    //     decoration: BoxDecoration(
+                                    //       border: Border.all(
+                                    //         color: Colors.black,
+                                    //         width: 1,
+                                    //       ),
+                                    //     ),
+                                    //     child: CountryFlag.fromCountryCode(
+                                    //       getCountryCode(survey.nationality),
+                                    //       height: 38,
+                                    //       width: 50,
+                                    //     ),
+                                    //   ),
+                                    // ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.black,
+                                          width: 1,
                                         ),
-                                        child: CountryFlag.fromCountryCode(
-                                          getCountryCode(survey.nationality),
-                                          height: 38,
-                                          width: 50,
-                                        ),
+                                      ),
+                                      child: CountryFlag.fromCountryCode(
+                                        getCountryCode(survey.nationality),
+                                        height: 32,
+                                        width: 43,
                                       ),
                                     ),
                                   ],
@@ -644,7 +658,7 @@ class _ListpageState extends State<Listpage> {
                   ),
                   Container(
                     height: 35,
-                    color: Colors.grey[700],
+                    color: Colors.grey[600],
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [

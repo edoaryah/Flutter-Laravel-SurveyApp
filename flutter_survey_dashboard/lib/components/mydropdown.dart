@@ -20,36 +20,25 @@ class MyDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 3),
-          child: Text(
-            label,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            ),
+    return SizedBox(
+      height: 60,
+      child: DropdownButtonFormField(
+        value: initialValue,
+        isExpanded: true,
+        decoration: InputDecoration(
+          labelText: label,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(4),
           ),
         ),
-        DropdownButtonFormField(
-          value: initialValue,
-          isExpanded: true,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
-            ),
-          ),
-          items: items.map((item) {
-            return DropdownMenuItem(
-              value: item,
-              child: Text(displayText != null ? displayText!(item) : item),
-            );
-          }).toList(),
-          onChanged: onChanged,
-        ),
-      ],
+        items: items.map((item) {
+          return DropdownMenuItem(
+            value: item,
+            child: Text(displayText != null ? displayText!(item) : item),
+          );
+        }).toList(),
+        onChanged: onChanged,
+      ),
     );
   }
 }
