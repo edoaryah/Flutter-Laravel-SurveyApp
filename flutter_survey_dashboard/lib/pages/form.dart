@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_survey_dashboard/components/mydropdown.dart';
+import 'package:flutter_survey_dashboard/components/mytextfield.dart';
 import 'package:flutter_survey_dashboard/services/service.dart';
 
 class FormPage extends StatefulWidget {
@@ -50,9 +52,9 @@ class _FormPageState extends State<FormPage> {
       setState(() {
         nationalities =
             nationalityRespondents.map((nr) => nr.nationality).toList();
-        isLoading = false;
         genres = genreRespondents.map((gr) => gr.genre).toList();
         genders = genderRespondents.map((gdr) => gdr.gender).toList();
+        isLoading = false;
       });
     } catch (e) {
       setState(() {
@@ -92,119 +94,45 @@ class _FormPageState extends State<FormPage> {
                             children: [
                               //form age
                               Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.only(bottom: 3),
-                                      child: Text(
-                                        'Age',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ),
-                                    TextFormField(
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                        ),
-                                      ),
-                                      keyboardType: TextInputType.number,
-                                      onSaved: (String? value) {
-                                        age = int.parse(value!);
-                                      },
-                                    ),
-                                  ],
+                                child: MyTextField(
+                                  label: 'Age',
+                                  keyboardType: TextInputType.number,
+                                  onSaved: (String? value) {
+                                    age = int.parse(value!);
+                                  },
                                 ),
                               ),
                               const SizedBox(width: 10),
                               //form gender
                               Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.only(bottom: 3),
-                                      child: Text(
-                                        'Gender',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 59,
-                                      width: 180,
-                                      child: DropdownButtonFormField(
-                                        isExpanded: true,
-                                        decoration: InputDecoration(
-                                          border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                          ),
-                                        ),
-                                        items: genders.map((gender) {
-                                          String displayText = gender;
-                                          if (gender == 'M') {
-                                            displayText = 'Male';
-                                          } else if (gender == 'F') {
-                                            displayText = 'Female';
-                                          }
-                                          return DropdownMenuItem(
-                                            value: gender,
-                                            child: Text(displayText),
-                                          );
-                                        }).toList(),
-                                        onChanged: (String? value) {
-                                          gender = value!;
-                                        },
-                                      ),
-                                    )
-                                  ],
+                                child: MyDropdown(
+                                  items: genders,
+                                  label: 'Gender',
+                                  width: 180,
+                                  onChanged: (String? value) {
+                                    gender = value!;
+                                  },
+                                  displayText: (String gender) {
+                                    String displayText = gender;
+                                    if (gender == 'M') {
+                                      displayText = 'Male';
+                                    } else if (gender == 'F') {
+                                      displayText = 'Female';
+                                    }
+                                    return displayText;
+                                  },
                                 ),
                               ),
                             ],
                           ),
                           const SizedBox(height: 15),
                           //form nationality
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.only(bottom: 3),
-                                child: Text(
-                                  'Nationality',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 59,
-                                child: DropdownButtonFormField(
-                                  isExpanded: true,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                  ),
-                                  items: nationalities.map((nationality) {
-                                    return DropdownMenuItem(
-                                      value: nationality,
-                                      child: Text(nationality),
-                                    );
-                                  }).toList(),
-                                  onChanged: (String? value) {
-                                    nationality = value!;
-                                  },
-                                ),
-                              ),
-                            ],
+                          MyDropdown(
+                            items: nationalities,
+                            label: 'Nationality',
+                            onChanged: (String? value) {
+                              nationality = value!;
+                            },
                           ),
                           const SizedBox(height: 25),
                           const Text(
@@ -219,132 +147,45 @@ class _FormPageState extends State<FormPage> {
                             children: [
                               //form gpa
                               Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.only(bottom: 3),
-                                      child: Text(
-                                        'GPA',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ),
-                                    TextFormField(
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                        ),
-                                      ),
-                                      keyboardType: TextInputType.number,
-                                      onSaved: (String? value) {
-                                        gpa = value!;
-                                      },
-                                    ),
-                                  ],
+                                child: MyTextField(
+                                  label: 'GPA',
+                                  keyboardType: TextInputType.number,
+                                  onSaved: (String? value) {
+                                    gpa = value!;
+                                  },
                                 ),
                               ),
                               const SizedBox(width: 10),
                               //form year
                               Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.only(bottom: 3),
-                                      child: Text(
-                                        'Year',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ),
-                                    TextFormField(
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                        ),
-                                      ),
-                                      keyboardType: TextInputType.number,
-                                      onSaved: (String? value) {
-                                        year = int.parse(value!);
-                                      },
-                                    ),
-                                  ],
+                                child: MyTextField(
+                                  label: 'Year',
+                                  keyboardType: TextInputType.number,
+                                  onSaved: (String? value) {
+                                    year = int.parse(value!);
+                                  },
                                 ),
                               ),
                             ],
                           ),
                           const SizedBox(height: 15),
                           //form genre
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.only(bottom: 3),
-                                child: Text(
-                                  'Genre',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 59,
-                                child: DropdownButtonFormField(
-                                  isExpanded: true,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                  ),
-                                  items: genres.map((genre) {
-                                    return DropdownMenuItem(
-                                      value: genre,
-                                      child: Text(genre),
-                                    );
-                                  }).toList(),
-                                  onChanged: (String? value) {
-                                    genre = value!;
-                                  },
-                                ),
-                              ),
-                            ],
+                          MyDropdown(
+                            items: genres,
+                            label: 'Genre',
+                            onChanged: (String? value) {
+                              genre = value!;
+                            },
                           ),
                           const SizedBox(height: 15),
                           SizedBox(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.only(bottom: 3),
-                                  child: Text(
-                                    'Report',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ),
-                                TextFormField(
-                                  maxLines: null,
-                                  keyboardType: TextInputType.multiline,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                  ),
-                                  onSaved: (String? value) {
-                                    reports = value!;
-                                  },
-                                ),
-                              ],
+                            child: MyTextField(
+                              label: 'Report',
+                              keyboardType: TextInputType.multiline,
+                              maxLines: null,
+                              onSaved: (String? value) {
+                                reports = value!;
+                              },
                             ),
                           ),
                           const SizedBox(height: 15),
@@ -374,7 +215,7 @@ class _FormPageState extends State<FormPage> {
                                       return AlertDialog(
                                         title: const Text('Success'),
                                         content: const Text(
-                                            'Data has been successfully submitted.'),
+                                            'Response has been successfully submitted.'),
                                         actions: <Widget>[
                                           TextButton(
                                             child: const Text('OK'),

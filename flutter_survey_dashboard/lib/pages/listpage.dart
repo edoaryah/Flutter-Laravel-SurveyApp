@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:country_flags/country_flags.dart';
+import 'package:flutter_survey_dashboard/components/mydropdown.dart';
+import 'package:flutter_survey_dashboard/components/mytextfield.dart';
 
 import 'package:flutter_survey_dashboard/services/service.dart';
 import 'package:flutter_survey_dashboard/models/survey_detail.dart';
-
-import 'package:flutter_survey_dashboard/components/nationality_dropdown.dart';
-import 'package:flutter_survey_dashboard/components/genre_dropdown.dart';
-import 'package:flutter_survey_dashboard/components/gender_dropdown.dart';
 
 class Listpage extends StatefulWidget {
   const Listpage({super.key});
@@ -31,6 +29,8 @@ class _ListpageState extends State<Listpage> {
   int surveyDetailsPerPage = 20;
 
   bool isLoading = true;
+
+  final _formKey = GlobalKey<FormState>();
 
   final reportsController = TextEditingController();
   final ageController = TextEditingController();
@@ -107,6 +107,118 @@ class _ListpageState extends State<Listpage> {
     }
   }
 
+  void showEditForm(SurveyDetails survey) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: ListView(
+              children: <Widget>[
+                MyTextField(
+                  label: 'Reports',
+                  keyboardType: TextInputType.text,
+                  onSaved: (String? value) {
+                    reportsController.text = value!;
+                  },
+                  initialValue: survey.reports,
+                ),
+                MyTextField(
+                  label: 'Age',
+                  keyboardType: TextInputType.number,
+                  onSaved: (String? value) {
+                    ageController.text = value!;
+                  },
+                  initialValue: survey.age.toString(),
+                ),
+                MyTextField(
+                  label: 'GPA',
+                  keyboardType: TextInputType.number,
+                  onSaved: (String? value) {
+                    gpaController.text = value!;
+                  },
+                  initialValue: survey.gpa.toString(),
+                ),
+                MyDropdown(
+                  items: genres,
+                  label: 'Genre',
+                  onChanged: (String? value) {
+                    genreController.text = value!;
+                  },
+                  initialValue: survey.genre,
+                ),
+                MyDropdown(
+                  items: nationalities,
+                  label: 'Nationality',
+                  onChanged: (String? value) {
+                    nationalityController.text = value!;
+                  },
+                  initialValue: survey.nationality,
+                ),
+                MyDropdown(
+                  items: genders,
+                  label: 'Gender',
+                  onChanged: (String? value) {
+                    genderController.text = value!;
+                  },
+                  displayText: (String gender) {
+                    String displayText = gender;
+                    if (gender == 'M') {
+                      displayText = 'Male';
+                    } else if (gender == 'F') {
+                      displayText = 'Female';
+                    }
+                    return displayText;
+                  },
+                  initialValue: survey.gender,
+                ),
+                ElevatedButton(
+                  child: const Text('Cancel'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                ElevatedButton(
+                  child: const Text('Save'),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+
+                      final localContext = context;
+                      try {
+                        service1
+                            .updateRespondent(
+                              survey.id,
+                              {
+                                'Reports': reportsController.text,
+                                'Age': ageController.text,
+                                'Gpa': gpaController.text,
+                                'Genre': genreController.text,
+                                'Nationality': nationalityController.text,
+                                'Gender': genderController.text,
+                              },
+                            )
+                            .then((_) => fetchSurveyDetails(currentPage))
+                            .then((_) => Navigator.of(localContext).pop())
+                            .catchError((e) {
+                              // Handle the error
+                            });
+                      } catch (e) {
+                        // Handle the error
+                      }
+                    }
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -159,12 +271,10 @@ class _ListpageState extends State<Listpage> {
                           onDismissed: (direction) {
                             try {
                               HttpSurveyDetails().deleteRespondent(survey.id);
-                              // Hapus item dari daftar Anda
                               setState(() {
                                 surveyDetails.removeAt(index);
                               });
                             } catch (e) {
-                              // Tampilkan pesan kesalahan jika gagal menghapus responden
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text('Failed to delete respondent'),
@@ -214,152 +324,21 @@ class _ListpageState extends State<Listpage> {
                                 child: Row(
                                   children: [
                                     IconButton(
-                                        icon: const Icon(Icons.edit),
-                                        onPressed: () {
-                                          reportsController.text =
-                                              survey.reports;
-                                          ageController.text =
-                                              survey.age.toString();
-                                          gpaController.text =
-                                              survey.gpa.toString();
-                                          nationalityController.text =
-                                              survey.nationality;
-                                          genreController.text = survey.genre;
-                                          genderController.text = survey.gender;
+                                      icon: const Icon(Icons.edit),
+                                      onPressed: () {
+                                        reportsController.text = survey.reports;
+                                        ageController.text =
+                                            survey.age.toString();
+                                        gpaController.text =
+                                            survey.gpa.toString();
+                                        nationalityController.text =
+                                            survey.nationality;
+                                        genreController.text = survey.genre;
+                                        genderController.text = survey.gender;
 
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return AlertDialog(
-                                                title: const Text(
-                                                    'Edit Respondent'),
-                                                content: SingleChildScrollView(
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: <Widget>[
-                                                      TextFormField(
-                                                        controller:
-                                                            reportsController,
-                                                        decoration:
-                                                            const InputDecoration(
-                                                          labelText: 'Reports',
-                                                        ),
-                                                      ),
-                                                      TextFormField(
-                                                        controller:
-                                                            ageController,
-                                                        decoration:
-                                                            const InputDecoration(
-                                                          labelText: 'Age',
-                                                        ),
-                                                        keyboardType:
-                                                            TextInputType
-                                                                .number,
-                                                      ),
-                                                      TextFormField(
-                                                        controller:
-                                                            gpaController,
-                                                        decoration:
-                                                            const InputDecoration(
-                                                          labelText: 'Gpa',
-                                                        ),
-                                                        keyboardType:
-                                                            TextInputType
-                                                                .number,
-                                                      ),
-                                                      GenreDropdown(
-                                                        genres: genres,
-                                                        initialValue:
-                                                            survey.genre,
-                                                        onChanged: (newValue) {
-                                                          genreController.text =
-                                                              newValue;
-                                                        },
-                                                      ),
-                                                      NationalityDropdown(
-                                                        nationalities:
-                                                            nationalities,
-                                                        initialValue:
-                                                            survey.nationality,
-                                                        onChanged: (newValue) {
-                                                          nationalityController
-                                                              .text = newValue;
-                                                        },
-                                                      ),
-                                                      GenderDropdown(
-                                                        genders: genders,
-                                                        initialValue:
-                                                            survey.gender,
-                                                        onChanged: (newValue) {
-                                                          genderController
-                                                              .text = newValue;
-                                                        },
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                actions: <Widget>[
-                                                  TextButton(
-                                                    child: const Text('Cancel'),
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                  ),
-                                                  TextButton(
-                                                    child: const Text('Save'),
-                                                    onPressed: () {
-                                                      final localContext =
-                                                          context;
-                                                      try {
-                                                        service1
-                                                            .updateRespondent(
-                                                              survey.id,
-                                                              {
-                                                                'Reports':
-                                                                    reportsController
-                                                                        .text,
-                                                                'Age':
-                                                                    ageController
-                                                                        .text,
-                                                                'Gpa':
-                                                                    gpaController
-                                                                        .text,
-                                                                'Genre':
-                                                                    genreController
-                                                                        .text,
-                                                                'Nationality':
-                                                                    nationalityController
-                                                                        .text,
-                                                                'Gender':
-                                                                    genderController
-                                                                        .text,
-                                                              },
-                                                            )
-                                                            .then((_) =>
-                                                                fetchSurveyDetails(
-                                                                    currentPage))
-                                                            .then((_) =>
-                                                                Navigator.of(
-                                                                        localContext)
-                                                                    .pop())
-                                                            .catchError((e) {
-                                                              // Handle the error
-                                                            });
-                                                      } catch (e) {
-                                                        // Handle the error
-                                                      }
-                                                    },
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        }),
+                                        showEditForm(survey);
+                                      },
+                                    ),
                                     Expanded(
                                       child: Container(
                                         decoration: BoxDecoration(

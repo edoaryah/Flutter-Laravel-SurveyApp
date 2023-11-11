@@ -11,7 +11,7 @@ class SurveySeeder extends Seeder
     public function run()
     {
         //arahkan ke path DataUTSMobileFixed.csv
-        $csv = Reader::createFromPath('D:\Kuliah\Semester 5\MobileProg\UTS-Mobile-All\Flutter-Laravel-SurveyApp\DataUTSMobileFixed.csv', 'r');
+        $csv = Reader::createFromPath('C:\Users\edoar\Documents\College\SurveyApp\DataUTSMobileFixed.csv', 'r');
         $csv->setHeaderOffset(0);
 
         foreach ($csv as $record) {
