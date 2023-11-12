@@ -102,7 +102,8 @@ class _MyBarGraphState extends State<MyBarGraph> with TickerProviderStateMixin {
                     backDrawRodData: BackgroundBarChartRodData(
                       show: true,
                       toY: maxDataValue,
-                      color: Colors.grey[200],
+                      // color: Colors.grey[200],
+                      color: Colors.white,
                     ),
                   ),
                 ],

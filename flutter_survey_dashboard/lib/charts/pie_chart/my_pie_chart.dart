@@ -87,7 +87,7 @@ class _MyPieChartState extends State<MyPieChart> {
                 ),
                 startDegreeOffset: value,
                 sections: showingSections(),
-                sectionsSpace: 0,
+                sectionsSpace: 3,
                 centerSpaceRadius: 0,
               ),
             ),

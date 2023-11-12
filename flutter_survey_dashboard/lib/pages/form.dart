@@ -256,7 +256,7 @@ class _FormPageState extends State<FormPage> {
                               margin:
                                   const EdgeInsets.symmetric(horizontal: 25),
                               decoration: BoxDecoration(
-                                color: Colors.black,
+                                color: Colors.grey[800],
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: const Center(

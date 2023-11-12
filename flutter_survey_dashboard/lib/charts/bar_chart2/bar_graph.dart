@@ -103,7 +103,8 @@ class _MyBarGraph2State extends State<MyBarGraph2>
                     backDrawRodData: BackgroundBarChartRodData(
                       show: true,
                       toY: maxDataValue,
-                      color: Colors.grey[200],
+                      // color: Colors.grey[200],
+                      color: Colors.white,
                     ),
                   ),
                 ],
