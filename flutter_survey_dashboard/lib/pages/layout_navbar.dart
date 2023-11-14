@@ -33,7 +33,10 @@ class _LayoutNavigationBar extends State<LayoutNavigationBar> {
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey[500],
+        backgroundColor: const Color.fromARGB(255, 205, 0, 0),
+        // type: BottomNavigationBarType.shifting,
         currentIndex: _currentIndex,
         onTap: (int index) {
           setState(() {

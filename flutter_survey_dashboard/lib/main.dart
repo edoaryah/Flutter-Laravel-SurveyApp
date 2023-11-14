@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_survey_dashboard/pages/layout_navbar.dart';
 import 'package:overlay_support/overlay_support.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 

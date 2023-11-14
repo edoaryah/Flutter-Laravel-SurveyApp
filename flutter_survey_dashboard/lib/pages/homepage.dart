@@ -99,9 +99,9 @@ class _HomepageState extends State<Homepage> {
                       bottom: 2,
                     ),
                     child: Card(
-                      color: const Color.fromARGB(255, 205, 0, 0),
+                      color: Colors.grey[300],
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -111,7 +111,7 @@ class _HomepageState extends State<Homepage> {
                             child: Icon(
                               Icons.group,
                               size: 50,
-                              color: Colors.white,
+                              color: Colors.red,
                             ),
                           ),
                           const SizedBox(width: 15),
@@ -122,7 +122,7 @@ class _HomepageState extends State<Homepage> {
                               style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w800,
-                                color: Colors.white,
+                                color: Colors.black,
                               ),
                             ),
                           ),
@@ -134,7 +134,7 @@ class _HomepageState extends State<Homepage> {
                     padding: const EdgeInsets.all(8.0),
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       color: Colors.grey[300],
                       child: Column(
@@ -329,7 +329,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(12),
                       ),
                       color: Colors.grey[300],
                       child: Column(
@@ -421,7 +421,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(12),
                       ),
                       color: Colors.grey[300],
                       child: Column(
