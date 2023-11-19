@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_survey_dashboard/pages/homepage.dart';
 import 'package:flutter_survey_dashboard/pages/listpage.dart';
 import 'package:flutter_survey_dashboard/pages/form.dart';
+import 'package:flutter_survey_dashboard/pages/formreport.dart';
+import 'package:flutter_survey_dashboard/pages/listpagereport.dart';
 
 class LayoutNavigationBar extends StatefulWidget {
   const LayoutNavigationBar({super.key});
@@ -11,17 +13,21 @@ class LayoutNavigationBar extends StatefulWidget {
 }
 
 class _LayoutNavigationBar extends State<LayoutNavigationBar> {
-  int _currentIndex = 1;
+  int _currentIndex = 2;
   final List<Widget> _children = [
+    const ListPageReport(),
     const Listpage(),
     const Homepage(),
     const FormPage(),
+    const FormReportPage(),
   ];
 
   final List<String> _titles = [
+    'List Reports',
     'List Survey',
     'Dashboard',
-    'Add Response',
+    'Add Survey',
+    'Add Reports',
   ];
 
   @override
@@ -36,28 +42,33 @@ class _LayoutNavigationBar extends State<LayoutNavigationBar> {
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey[500],
         backgroundColor: const Color.fromARGB(255, 205, 0, 0),
-        // type: BottomNavigationBarType.shifting,
+        type: BottomNavigationBarType.fixed, // Change to fixed
         currentIndex: _currentIndex,
         onTap: (int index) {
           setState(() {
             _currentIndex = index;
           });
         },
-        items: const [
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment),
+            label: 'report',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
-            backgroundColor: Color.fromARGB(255, 205, 0, 0),
             label: 'List',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            backgroundColor: Color.fromARGB(255, 205, 0, 0),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.format_list_bulleted_add),
-            backgroundColor: Color.fromARGB(255, 205, 0, 0),
             label: 'Add Survey',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment_add),
+            label: 'Add Report',
           ),
         ],
       ),

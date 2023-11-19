@@ -28,7 +28,7 @@ class MyDropdown extends StatelessWidget {
         decoration: InputDecoration(
           labelText: label,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(4),
           ),
         ),
         items: items.map((item) {

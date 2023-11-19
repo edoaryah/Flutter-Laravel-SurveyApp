@@ -252,16 +252,16 @@ class _FormPageState extends State<FormPage> {
                               }
                             },
                             child: Container(
-                              padding: const EdgeInsets.all(20),
+                              padding: const EdgeInsets.all(15),
                               margin:
                                   const EdgeInsets.symmetric(horizontal: 25),
                               decoration: BoxDecoration(
-                                color: Colors.grey[800],
-                                borderRadius: BorderRadius.circular(8),
+                                color: const Color.fromARGB(255, 205, 0, 0),
+                                borderRadius: BorderRadius.circular(4),
                               ),
                               child: const Center(
                                 child: Text(
-                                  'Submit',
+                                  'Send Survey',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
