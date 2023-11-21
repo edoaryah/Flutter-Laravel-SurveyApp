@@ -309,34 +309,6 @@ class _ListpageState extends State<Listpage> {
               )
             : Column(
                 children: [
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //   children: [
-                  //     ElevatedButton(
-                  //       onPressed: currentPage > 1
-                  //           ? () {
-                  //               setState(() {
-                  //                 currentPage--;
-                  //                 fetchSurveyDetails(currentPage);
-                  //                 isLoading = true;
-                  //               });
-                  //             }
-                  //           : null,
-                  //       child: const Text("  <<  "),
-                  //     ),
-                  //     Text("Page $currentPage of $totalPages"),
-                  //     ElevatedButton(
-                  //       onPressed: currentPage < totalPages
-                  //           ? () {
-                  //               setState(() {
-                  //                 currentPage++;
-                  //                 fetchSurveyDetails(currentPage);
-                  //                 isLoading = true;
-                  //               });
-                  //             }
-                  //           : null,
-                  //       child: const Text("  >> "),
-                  //     ),
                   Expanded(
                     child: ListView.builder(
                       itemCount: surveyDetails.length + 2, //awalnya 0
@@ -525,21 +497,6 @@ class _ListpageState extends State<Listpage> {
                                               showEditForm(survey);
                                             },
                                           ),
-                                          // Expanded(
-                                          //   child: Container(
-                                          //     decoration: BoxDecoration(
-                                          //       border: Border.all(
-                                          //         color: Colors.black,
-                                          //         width: 1,
-                                          //       ),
-                                          //     ),
-                                          //     child: CountryFlag.fromCountryCode(
-                                          //       getCountryCode(survey.nationality),
-                                          //       height: 38,
-                                          //       width: 50,
-                                          //     ),
-                                          //   ),
-                                          // ),
                                           Container(
                                             decoration: BoxDecoration(
                                               border: Border.all(
@@ -587,54 +544,6 @@ class _ListpageState extends State<Listpage> {
                       },
                     ),
                   ),
-                  // Container(
-                  //   height: 35,
-                  //   color: Colors.grey[800],
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //     children: [
-                  //       InkWell(
-                  //         onTap: currentPage > 1
-                  //             ? () {
-                  //                 setState(() {
-                  //                   currentPage--;
-                  //                   fetchSurveyDetails(currentPage);
-                  //                   isLoading = true;
-                  //                 });
-                  //               }
-                  //             : null,
-                  //         child: const Text("<<",
-                  //             style: TextStyle(
-                  //                 fontSize: 15,
-                  //                 color: Colors.white,
-                  //                 fontWeight: FontWeight.bold)),
-                  //       ),
-                  //       Text(
-                  //         "Page $currentPage of $totalPages",
-                  //         style: const TextStyle(
-                  //             color: Colors.white,
-                  //             fontWeight: FontWeight.bold,
-                  //             fontSize: 13),
-                  //       ),
-                  //       InkWell(
-                  //         onTap: currentPage < totalPages
-                  //             ? () {
-                  //                 setState(() {
-                  //                   currentPage++;
-                  //                   fetchSurveyDetails(currentPage);
-                  //                   isLoading = true;
-                  //                 });
-                  //               }
-                  //             : null,
-                  //         child: const Text(">>",
-                  //             style: TextStyle(
-                  //                 fontSize: 15,
-                  //                 color: Colors.white,
-                  //                 fontWeight: FontWeight.bold)),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                 ],
               ),
       ),

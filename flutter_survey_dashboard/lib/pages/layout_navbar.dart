@@ -49,7 +49,7 @@ class _LayoutNavigationBar extends State<LayoutNavigationBar> {
             _currentIndex = index;
           });
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.assignment),
             label: 'report',
