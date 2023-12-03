@@ -68,7 +68,8 @@ class _FormReportPageState extends State<FormReportPage> {
       home: Scaffold(
         body: isLoading
             ? const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                    color: Color.fromARGB(255, 205, 0, 0)),
               )
             : ListView(
                 children: <Widget>[

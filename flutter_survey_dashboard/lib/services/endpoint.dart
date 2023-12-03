@@ -1,6 +1,6 @@
 class Endpoints {
   // static const String urlDomain = 'http://192.168.77.204:8000/';
-  static const String urlDomain = 'http://192.168.64.85:8000/'; //punya diki ya
+  static const String urlDomain = 'http://192.168.1.7:8000/'; //punya diki ya
 
   static const String totalRespondents = 'api/total-respondents';
   static const String respondentsByGender = 'api/respondents-by-gender';

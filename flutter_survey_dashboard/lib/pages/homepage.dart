@@ -86,7 +86,8 @@ class _HomepageState extends State<Homepage> {
       home: Scaffold(
         body: isLoading
             ? const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                    color: Color.fromARGB(255, 205, 0, 0)),
               )
             : ListView(
                 children: <Widget>[

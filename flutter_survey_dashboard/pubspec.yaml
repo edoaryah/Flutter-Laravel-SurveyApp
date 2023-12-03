@@ -39,6 +39,8 @@ dependencies:
   country_flags: ^2.1.0
   overlay_support: ^2.1.0
   flutter_native_splash: ^2.3.5
+  firebase_core: ^2.24.0
+  firebase_auth: ^4.15.0
 
 dev_dependencies:
   flutter_test:

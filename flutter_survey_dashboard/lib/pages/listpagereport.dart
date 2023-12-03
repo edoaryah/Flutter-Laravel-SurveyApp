@@ -294,7 +294,8 @@ class _ListPageReportState extends State<ListPageReport> {
       home: Scaffold(
         body: isLoading
             ? const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                    color: Color.fromARGB(255, 205, 0, 0)),
               )
             : Column(
                 children: [

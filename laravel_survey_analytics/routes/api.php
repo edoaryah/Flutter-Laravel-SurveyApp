@@ -38,3 +38,5 @@ Route::get('/report-details', [ReportController::class, 'reportDetails']);
 Route::put('/report/{id}', [ReportController::class, 'updateReport']);
 Route::delete('/report/{id}', [ReportController::class, 'deleteReport']);
 Route::post('/report', [ReportController::class, 'createReport']);
+
+Route::post('/login', [AuthController::class, 'login']);

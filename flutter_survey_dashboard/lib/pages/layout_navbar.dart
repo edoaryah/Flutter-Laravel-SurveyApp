@@ -4,6 +4,7 @@ import 'package:flutter_survey_dashboard/pages/listpage.dart';
 import 'package:flutter_survey_dashboard/pages/form.dart';
 import 'package:flutter_survey_dashboard/pages/formreport.dart';
 import 'package:flutter_survey_dashboard/pages/listpagereport.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LayoutNavigationBar extends StatefulWidget {
   const LayoutNavigationBar({super.key});
@@ -30,12 +31,22 @@ class _LayoutNavigationBar extends State<LayoutNavigationBar> {
     'Add Reports',
   ];
 
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(_titles[_currentIndex]),
         backgroundColor: const Color.fromARGB(255, 205, 0, 0),
+        actions: [
+          IconButton(
+            onPressed: signUserOut,
+            icon: Icon(Icons.logout),
+          ),
+        ],
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
