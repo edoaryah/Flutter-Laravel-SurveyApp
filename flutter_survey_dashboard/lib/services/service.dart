@@ -1,4 +1,5 @@
 import 'package:flutter_survey_dashboard/models/gender2.dart';
+import 'package:flutter_survey_dashboard/models/kelulusan.dart';
 import 'package:flutter_survey_dashboard/models/role.dart';
 import 'package:flutter_survey_dashboard/models/type.dart';
 import 'package:http/http.dart' as http;
@@ -243,6 +244,19 @@ class HttpNationalityRespondents {
       return list.map((item) => NationalityRespondents.fromJson(item)).toList();
     } else {
       throw Exception('Failed to load nationality respondents');
+    }
+  }
+}
+
+class HttpKelulusanMahasiswa {
+  Future<List<KelulusanMahasiswa>> getKelulusanMahasiswa() async {
+    var response = await http.get(Uri.parse(Endpoints.getUrlKelulusan()));
+
+    if (response.statusCode == 200) {
+      var list = json.decode(response.body) as List;
+      return list.map((item) => KelulusanMahasiswa.fromJson(item)).toList();
+    } else {
+      throw Exception('Failed to load kelulusan');
     }
   }
 }

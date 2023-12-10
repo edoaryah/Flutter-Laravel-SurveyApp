@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:country_flags/country_flags.dart';
+import 'package:flutter_survey_dashboard/models/kelulusan.dart';
 
 import 'package:flutter_survey_dashboard/services/service.dart';
 import 'package:flutter_survey_dashboard/models/gender.dart';
@@ -9,6 +10,8 @@ import 'package:flutter_survey_dashboard/charts/bar_chart1/bar_data.dart';
 import 'package:flutter_survey_dashboard/charts/bar_chart1/bar_graph.dart';
 import 'package:flutter_survey_dashboard/charts/bar_chart2/bar_data.dart';
 import 'package:flutter_survey_dashboard/charts/bar_chart2/bar_graph.dart';
+import 'package:flutter_survey_dashboard/charts/bar_chart3/bar_data.dart';
+import 'package:flutter_survey_dashboard/charts/bar_chart3/bar_graph.dart';
 import 'package:flutter_survey_dashboard/charts/pie_chart/my_pie_chart.dart';
 
 class Homepage extends StatefulWidget {
@@ -25,6 +28,7 @@ class _HomepageState extends State<Homepage> {
   late HttpAverageAgeRespondents serviceAverageAgeRespondents;
   late HttpAverageGpaRespondents serviceAverageGpaRespondents;
   late HttpGenderRespondents serviceGenderRespondents;
+  late HttpKelulusanMahasiswa serviceKelulusanMahasiswa;
 
   int? total;
   double? age;
@@ -32,6 +36,7 @@ class _HomepageState extends State<Homepage> {
   List<GenreRespondents>? genreRespondents;
   List<NationalityRespondents>? nationalityRespondents;
   List<GenderRespondents>? genderRespondents;
+  List<KelulusanMahasiswa>? kelulusanMahasiswa;
 
   bool isLoading = true;
   String? error;
@@ -46,6 +51,7 @@ class _HomepageState extends State<Homepage> {
     serviceAverageAgeRespondents = HttpAverageAgeRespondents();
     serviceAverageGpaRespondents = HttpAverageGpaRespondents();
     serviceGenderRespondents = HttpGenderRespondents();
+    serviceKelulusanMahasiswa = HttpKelulusanMahasiswa();
     fetchData();
   }
 
@@ -61,6 +67,8 @@ class _HomepageState extends State<Homepage> {
           await serviceAverageGpaRespondents.getAverageGpaRespondents();
       final genderResult =
           await serviceGenderRespondents.getGenderRespondents();
+      final kelulusanResult =
+          await serviceKelulusanMahasiswa.getKelulusanMahasiswa();
       setState(() {
         total = result.total;
         genreRespondents = genreResult;
@@ -68,6 +76,7 @@ class _HomepageState extends State<Homepage> {
         age = averageAgeResult.age;
         gpa = averageGpaResult.gpa;
         genderRespondents = genderResult;
+        kelulusanMahasiswa = kelulusanResult;
         isLoading = false;
       });
     } catch (e) {
@@ -498,6 +507,61 @@ class _HomepageState extends State<Homepage> {
                                     ))
                                 .toList(),
                           const SizedBox(height: 20),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 2,
+                      right: 8,
+                      left: 8,
+                      bottom: 8,
+                    ),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      color: Colors.grey[300],
+                      child: Column(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(top: 16),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Graduation of students',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w800,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: 16, bottom: 16, left: 5, right: 5),
+                            child: SizedBox(
+                              height: 250,
+                              child: nationalityRespondents != null &&
+                                      total != null
+                                  ? MyBarGraph3(
+                                      kelulusanData: kelulusanMahasiswa!
+                                          .map((item) => KelulusanTotal(
+                                              tahunlulus: item.tahunlulus,
+                                              count: item.count.toDouble()))
+                                          .toList(),
+                                      totalRespondents: total!,
+                                    )
+                                  : const CircularProgressIndicator(),
+                            ),
+                          ),
+                          //empty
+                          const SizedBox(height: 10),
                         ],
                       ),
                     ),

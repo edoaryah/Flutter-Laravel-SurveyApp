@@ -1,6 +1,6 @@
 class Endpoints {
   // static const String urlDomain = 'http://192.168.77.204:8000/';
-  static const String urlDomain = 'http://192.168.1.7:8000/'; //punya diki ya
+  static const String urlDomain = 'http://192.168.1.12:8000/'; //punya diki ya
 
   static const String totalRespondents = 'api/total-respondents';
   static const String respondentsByGender = 'api/respondents-by-gender';
@@ -14,6 +14,7 @@ class Endpoints {
       'api/respondents-by-nationality';
   static const String surveyDetails = 'api/survey-details';
   static const String reportDetails = 'api/report-details';
+  static const String kelulusanMahasiswa = 'api/kelulusan';
 
   static String getUrlTotalRespondents() => urlDomain + totalRespondents;
   static String getUrlRespondentsByGender() => urlDomain + respondentsByGender;
@@ -27,4 +28,5 @@ class Endpoints {
       urlDomain + respondentsByNationality;
   static String getUrlSurveyDetails() => urlDomain + surveyDetails;
   static String getUrlReportDetails() => urlDomain + reportDetails;
+  static String getUrlKelulusan() => urlDomain + kelulusanMahasiswa;
 }

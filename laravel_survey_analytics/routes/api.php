@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KelulusanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SurveyController;
@@ -39,4 +40,4 @@ Route::put('/report/{id}', [ReportController::class, 'updateReport']);
 Route::delete('/report/{id}', [ReportController::class, 'deleteReport']);
 Route::post('/report', [ReportController::class, 'createReport']);
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::get('/kelulusan', [KelulusanController::class, 'jumlahKelulusan']);
