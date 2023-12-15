@@ -1,5 +1,5 @@
-# UTS PEMROGRAMAN MOBILE - KELOMPOK 3
-
+# SIREMA - KELOMPOK 3
+![sirema](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/114456394/21e40a8f-f66c-4f4a-b1c8-6de93a72920d)
 ## Latar Belakang Masalah
 
 Mr. X merupakan Direktur Politeknik terbesar di Indonesia, yang memiliki tanggung jawab untuk menjaga kualitas layanan pendidikan dan aspek pendukung di kampus. Salah satu cara untuk menjaga kualitas tersebut yaitu dengan mengetahui masalah-masalah yang dihadapi oleh para mahasiswa. Untuk mengetahui permasalahan yang dihadapi, Mr. X melakukan survey kepada mahasiswa dari kelas Internasional. Survey ini bertujuan untuk mengumpulkan data mengenai faktor-faktor yang dipermasalahkan oleh mahasiswa, seperti Sumberdaya dan Dukungan Akademik, Layanan Kantin dan Makanan, dan lainnya.
@@ -7,6 +7,7 @@ Mr. X merupakan Direktur Politeknik terbesar di Indonesia, yang memiliki tanggun
 Data hasil survey yang telah dilakukan sangat penting bagi Mr. X untuk mengambil langkah-langkah perbaikan. Dengan mengetahui permasalahan yang dihadapi oleh mahasiswa, Mr. X dapat membuat kebijakan dan program yang tepat untuk meningkatkan kualitas layanan pendidikan dan aspek pendukung di kampus.
 
 Aplikasi mobile survey kualitas pendidikan dan aspek pendukung di kampus dapat menjadi solusi bagi Mr. X untuk mengetahui hasil survey secara cepat dan mudah, dan meningkatkan efisiensi kerja Mr. X. Aplikasi ini dapat menampilkan data hasil survey seperti faktor-faktor yang dipermasalahkan, gender, negara asal, rata-rata umur responden, dan lain sebagainya. Aplikasi ini dapat dikembangkan dengan menggunakan framework Laravel untuk backend dan framework Flutter untuk frontend. Dengan menggunakan framework tersebut, aplikasi dapat dikembangkan dengan cepat dan mudah.
+
 ![sirema](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/114456394/21e40a8f-f66c-4f4a-b1c8-6de93a72920d)
 
 ## Flowchart
