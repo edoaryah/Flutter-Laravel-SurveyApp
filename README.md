@@ -51,7 +51,7 @@ Halaman home menampilkan informasi total responden, visualisasi pie chart untuk 
 ![persentase kelulusan](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/36610e5a-0655-4c1d-afdf-7f698aa0b7cb)
 
 
-Pada halaman yang lain, terdapat halaman survey. Disini terdapat detail respondent setiap ID, mencakup informasi seperti gender, umur GPA, tahun, bidang permasalahan, dan keluhan. Dengan pagination, setiap halaman menampilkan 20 ID, dan tombol panah kanan membawa pengguna ke halaman terakhir. Setiap card respondent ID dapat diedit, dengan kemampuan mengganti genre, kewarganegaraan, dan menghapus data. 
+Pada halaman yang lain, terdapat halaman survey. Disini terdapat detail respondent setiap ID, mencakup informasi seperti gender, umur GPA, tahun, bidang permasalahan, dan keluhan. Dengan pagination, setiap halaman menampilkan 20 ID, dan tombol panah kanan membawa pengguna ke halaman terakhir. Setiap card respondent ID dapat diedit, dengan kemampuan mengganti genre, kewarganegaraan, dan menghapus data. Survey Form merupakan halaman dimana mahasiswa dapat mengisi form untuk menyampaikan keluhan atau memberikan masukan kepada pihak kampus. Setelah mengisi kolom umur, gender, GPA, year, genre, dan isi report, data dapat dilihat pada halaman Survey sebagai respondent ID baru.
 
 ![tampilan seluruh survey](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/24f77797-afa8-4240-85f9-087931156130)
 
@@ -62,13 +62,17 @@ Pada halaman yang lain, terdapat halaman survey. Disini terdapat detail responde
 ![manghapus laporn survey](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/9c902ee6-bdee-432e-b2e8-22a04b959e93)
 
 
-Halaman report, menampilkan laporan yang berkaitan dengan kekerasan di lingkungan kampus. Pengguna dapat memilih dan melihat detail laporan mahasiswa tertentu, mengedit data, dan menghapus laporan melalui fungsi serupa seperti pada halaman survey. 
+Halaman report, menampilkan laporan yang berkaitan dengan kekerasan di lingkungan kampus. Pengguna dapat memilih dan melihat detail laporan mahasiswa tertentu, mengedit data, dan menghapus laporan melalui fungsi serupa seperti pada halaman survey. Report Form memungkinkan mahasiswa melaporkan tindakan kekerasan di kampus. Melalui form ini, mahasiswa mengisi nama, umur, gender, status korban atau saksi mata, jenis tindakan kekerasan, dan kronologi kejadian. Data yang di submit dapat dilihat pada halaman report. 
 
-Survey Form merupakan halaman dimana mahasiswa dapat mengisi form untuk menyampaikan keluhan atau memberikan masukan kepada pihak kampus. Setelah mengisi kolom umur, gender, GPA, year, genre, dan isi report, data dapat dilihat pada halaman Survey sebagai respondent ID baru. 
+![fitur seluruh laporan](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/eed4a46f-c004-4c2f-92de-7bee834e9071)
 
-Report Form memungkinkan mahasiswa melaporkan tindakan kekerasan di kampus. Melalui form ini, mahasiswa mengisi nama, umur, gender, status korban atau saksi mata, jenis tindakan kekerasan, dan kronologi kejadian. Data yang di submit dapat dilihat pada halaman report. 
+![edit laporan](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/1339dd48-8703-4f66-97c1-37573a5b225b)
+
 
 Terakhir, pengguna dapat logout dengan menekan ikon logout pada appbar, kembali ke halaman login atau auth. Sistem ini menyajikan suatu platform yang komprehensif untuk manajemen data dan pelaporan terkait kekerasan di lingkungan kampus.
+
+![logout](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/f7987a63-5785-4d3e-8abf-cba8346bc125)
+
 
 ## Dokumentasi Kegiatan
 ![Dokumentasi_Kelompok3](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/114456394/a5c8eb7f-60c7-4102-a43e-1a01e7646108)
