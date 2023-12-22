@@ -33,5 +33,15 @@ Aplikasi ini dikembangkan menggunakan teknologi terkini, dengan backend mengguna
 
 https://youtu.be/pJ5E9GFdFiE?si=SaLXTOmjYqMXEegA
 
+## Alur Program
+Ketika membuka aplikasi ini pertama kali pengguna akan diminta untuk melakukan autentikasi menggunakan email dan password yang telah terdaftar. Setelah berhasil login menggunakan email kampus dan menekan tombol Sign In, pengguna menunggu beberapa detik hingga data muncul. Pada appbar, terdapat ikon user yang ketika diklik akan menampilkan informasi email yang digunakan untuk login. 
+Halaman home menampilkan informasi total responden, visualisasi pie chart untuk jumlah responden berdasarkan gender, rata-rata umur, dan GPA atau IPK dari keseluruhan responden. Selanjutnya, terdapat bagian untuk visualisasi asal negara atau kewarganegaraan responden dalam bentuk bar chart. 
+Bagian berikutnya terdapat probloem genre, dengan visualisasi bar chart untuk jumlah responden berdasarkan bidang masalah. Bagian terakhir pada halaman home adalah Graduation of Students, menampilkan presentase kelulusan mahasiswa pada setiap tahunnya dalam bentuk bar chart.
+Pada halaman yang lain, terdapat halaman survey. Disini terdapat detail respondent setiap ID, mencakup informasi seperti gender, umur GPA, tahun, bidang permasalahan, dan keluhan. Dengan pagination, setiap halaman menampilkan 20 ID, dan tombol panah kanan membawa pengguna ke halaman terakhir. Setiap card respondent ID dapat diedit, dengan kemampuan mengganti genre, kewarganegaraan, dan menghapus data. 
+Halaman report, menampilkan laporan yang berkaitan dengan kekerasan di lingkungan kampus. Pebgguna dapat memilih dan melihat detail laporan mahasiswa tertentu, mengedit data, dan menghapus laporan melalui fungsi serupa seperti pada halaman survey. 
+Survey Form merupakan halaman dimana mahasiswa dapat mengisi form untuk menyampaikan keluhan atau memberikan masukan kepada pihak kampus. Setelah mengisi kolom umur, gender, GPA, year, genre, dan isi report, data dapat dilihat pada halaman Survey sebagai respondent ID baru. 
+Report Form memungkinkan mahasiswa melaporkan tindakan kekerasan di kampus. Melalui form ini, mahasiswa mengisi nama, umur, gender, status korban atau saksi mata, jenis tindakan kekerasan, dan kronologi kejadian. Data yang di submit dapat dilihat pada halaman report. 
+Terakhir, pengguna dapat logout dengan menekan ikon logout pada appbar, kembali ke halaman login atau auth. Sistem ini menyajikan suatu platform yang komprehensif untuk manajemen data dan pelaporan terkait kekerasan di lingkungan kampus.
+
 ## Dokumentasi Kegiatan
 ![Dokumentasi_Kelompok3](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/114456394/a5c8eb7f-60c7-4102-a43e-1a01e7646108)
