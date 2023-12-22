@@ -73,6 +73,52 @@ Terakhir, pengguna dapat logout dengan menekan ikon logout pada appbar, kembali 
 
 ![logout](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/f7987a63-5785-4d3e-8abf-cba8346bc125)
 
+## Alur Kode Program 
+![mobile_UAS drawio](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/8ca74327-5e15-4ef6-9d17-a8f5363c4c04)
+
+Alur Kode Program Sistem: Integrasi Laravel Backend dan Flutter Frontend
+
+Sistem yang dibangun terdiri dari backend menggunakan Laravel dan frontend menggunakan Flutter. Berikut adalah alur umum kode program:
+
+1. Database Migration di Laravel:
+Pertama, struktur database diatur menggunakan migrasi Laravel.
+Tiga tabel utama disiapkan: 'surveys', 'reports', dan 'kelulusans' dengan kolom-kolom yang sesuai.
+
+2. API Controller di Laravel:
+Setelah migrasi, API Controller dibuat untuk mengelola akses data. Contoh, SurveyController, ReportController, dan KelulusanController.
+Controller ini berfungsi sebagai perantara antara aplikasi Flutter dan database, menanggapi permintaan HTTP dari Flutter.
+
+3. Laravel API Routes:
+Routing diatur di Laravel untuk mengarahkan permintaan HTTP dari Flutter ke API Controller yang sesuai.
+Misalnya, rute 'api/survey-details' dapat dihubungkan dengan metode di SurveyController yang mengambil data survei.
+
+4. Model Kelas di Flutter:
+Pada sisi Flutter, terdapat folder Models yang berisi sejumlah kelas model seperti SurveyDetails, ReportDetails, dan KelulusanMahasiswa.
+Kelas-kelas ini merepresentasikan objek data dengan properti-propertinya.
+
+5. HTTP Endpoints di Flutter:
+Dalam file endpoints.dart, terdapat kelas Endpoints yang menyediakan URL untuk setiap endpoint API, memudahkan dalam melakukan HTTP requests ke backend.
+
+6. HTTP Services di Flutter:
+Modul services pada Flutter menyediakan kelas-kelas untuk berinteraksi dengan backend menggunakan HTTP requests.
+HttpSurveyDetails untuk mengelola data survei, HttpReportDetails untuk data laporan, dan sebagainya.
+
+7. HTTP Requests dan JSON Parsing di Flutter:
+HTTP requests digunakan untuk mengambil data dari backend. Contohnya, di HttpSurveyDetails, terdapat metode getSurveyDetails untuk mengambil detail survei.
+Hasil respons JSON dari backend di-parse menjadi objek-objek menggunakan model kelas Flutter yang sesuai.
+
+8. Penggunaan Data di Aplikasi Flutter:
+Setelah data diambil dari backend, data tersebut digunakan dalam aplikasi Flutter untuk menampilkan informasi di antarmuka pengguna.
+
+9. Interaksi Pengguna dan Kirim Data:
+Pengguna dapat berinteraksi dengan aplikasi Flutter untuk mengirim data melalui formulir.
+Data tersebut dikirim ke backend menggunakan HTTP requests, contohnya pada createReport dalam HttpReportDetails.
+
+10. Update dan Hapus Data:
+Terdapat pula fungsionalitas untuk memperbarui dan menghapus data melalui backend, seperti pada metode updateReport dan deleteReport.
+
+Dengan alur ini, sistem dapat mengelola, mengambil, memperbarui, dan menghapus data melalui antarmuka Flutter yang terhubung dengan backend Laravel melalui RESTful API.
+
 
 ## Dokumentasi Kegiatan
 ![Dokumentasi_Kelompok3](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/114456394/a5c8eb7f-60c7-4102-a43e-1a01e7646108)
