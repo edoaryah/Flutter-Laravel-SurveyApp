@@ -3,7 +3,7 @@
 
 ## Brief Description
 
-Selamat datang di aplikasi mobile survei kualitas pendidikan dan aspek pendukung di kampus yang dikembangkan atas inisiatif Mr. X, seorang Direktur dari Politeknik terbesar di Indonesia. Dalam peranannya sebagai pemimpin, Mr. X bertanggung jawab menjaga dan meningkatkan kualitas layanan pendidikan serta aspek pendukung di lingkungan kampus.
+Selamat datang di aplikasi mobile survei kualitas pendidikan dan aspek pendukung di kampus yang dikembangkan atas inisiatif Mr. X, seorang Direktur dari Politeknik terbesar di Indonesia. Dalam peranannya sebagai pemimpin, Mr. X bertanggung jawab menjaga dan meningkatkan kualitas layanan pendidikan serta aspek pendukung di lingkungan kampus. 
 
 ## Survey Objectives
 
