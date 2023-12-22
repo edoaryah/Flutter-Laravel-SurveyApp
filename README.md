@@ -35,6 +35,8 @@ https://youtu.be/pJ5E9GFdFiE?si=SaLXTOmjYqMXEegA
 
 ## Alur Program
 Ketika membuka aplikasi ini pertama kali pengguna akan diminta untuk melakukan autentikasi menggunakan email dan password yang telah terdaftar. Setelah berhasil login menggunakan email kampus dan menekan tombol Sign In, pengguna menunggu beberapa detik hingga data muncul. Pada appbar, terdapat ikon user yang ketika diklik akan menampilkan informasi email yang digunakan untuk login. 
+![login](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/cd3871fb-01a6-4765-a49b-78c4eb13ad00)
+
 
 Halaman home menampilkan informasi total responden, visualisasi pie chart untuk jumlah responden berdasarkan gender, rata-rata umur, dan GPA atau IPK dari keseluruhan responden. Selanjutnya, terdapat bagian untuk visualisasi asal negara atau kewarganegaraan responden dalam bentuk bar chart. 
 
