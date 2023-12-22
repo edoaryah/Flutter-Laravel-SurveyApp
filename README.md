@@ -35,23 +35,30 @@ https://youtu.be/pJ5E9GFdFiE?si=SaLXTOmjYqMXEegA
 
 ## Alur Program
 Ketika membuka aplikasi ini pertama kali pengguna akan diminta untuk melakukan autentikasi menggunakan email dan password yang telah terdaftar. Setelah berhasil login menggunakan email kampus dan menekan tombol Sign In, pengguna menunggu beberapa detik hingga data muncul. Pada appbar, terdapat ikon user yang ketika diklik akan menampilkan informasi email yang digunakan untuk login. 
+![login](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/cd3871fb-01a6-4765-a49b-78c4eb13ad00)
 
-![login](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/cd3871fb-01a6-4765-a49b-78c4eb13ad00)![informasi login](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/046ba6fd-0853-4962-bdbb-b2ce77f6b2f3)
+![informasi login](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/046ba6fd-0853-4962-bdbb-b2ce77f6b2f3)
 
 
 Halaman home menampilkan informasi total responden, visualisasi pie chart untuk jumlah responden berdasarkan gender, rata-rata umur, dan GPA atau IPK dari keseluruhan responden. Selanjutnya, terdapat bagian untuk visualisasi asal negara atau kewarganegaraan responden dalam bentuk bar chart. Bagian berikutnya terdapat probloem genre, dengan visualisasi bar chart untuk jumlah responden berdasarkan bidang masalah. Bagian terakhir pada halaman home adalah Graduation of Students, menampilkan presentase kelulusan mahasiswa pada setiap tahunnya dalam bentuk bar chart.
 
 ![dashboard](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/5b8b2a07-0dc0-45ba-a30f-a013895b21dc)
+
 ![bart chart negara](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/48fa1ead-1117-45c1-9622-7f0828bd6f4a)
+
 ![bart chart genre permasalahan](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/84caf474-b7e0-4ff0-9fa8-29f273143d8e)
+
 ![persentase kelulusan](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/36610e5a-0655-4c1d-afdf-7f698aa0b7cb)
 
 
 Pada halaman yang lain, terdapat halaman survey. Disini terdapat detail respondent setiap ID, mencakup informasi seperti gender, umur GPA, tahun, bidang permasalahan, dan keluhan. Dengan pagination, setiap halaman menampilkan 20 ID, dan tombol panah kanan membawa pengguna ke halaman terakhir. Setiap card respondent ID dapat diedit, dengan kemampuan mengganti genre, kewarganegaraan, dan menghapus data. 
 
 ![tampilan seluruh survey](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/24f77797-afa8-4240-85f9-087931156130)
+
 ![informasi detail survey](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/d86df1fb-e010-4756-b793-b89115dd74cd)
+
 ![edit survey](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/cbfb3ee1-5eec-40c9-8510-8e3808afec44)
+
 ![manghapus laporn survey](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/9c902ee6-bdee-432e-b2e8-22a04b959e93)
 
 
