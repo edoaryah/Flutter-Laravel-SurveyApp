@@ -76,7 +76,7 @@ Terakhir, pengguna dapat logout dengan menekan ikon logout pada appbar, kembali 
 ## Alur Kode Program 
 ![mobile_UAS drawio](https://github.com/edoaryah/Flutter-Laravel-SurveyApp/assets/92168645/8ca74327-5e15-4ef6-9d17-a8f5363c4c04)
 
-Alur Kode Program Sistem: Integrasi Laravel Backend dan Flutter Frontend
+Alur Kode Program Sistem: Integrasi Laravel Backend dan Flutter Frontend.
 
 Sistem yang dibangun terdiri dari backend menggunakan Laravel dan frontend menggunakan Flutter. Berikut adalah alur umum kode program:
 
